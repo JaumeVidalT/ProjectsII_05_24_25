@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class RandomRoomSelecter : MonoBehaviour
 {
+    public static RandomRoomSelecter creadorDeProblemas;
+
+
+
     public Transform[] rooms;
     
     public GameObject problem;
 
     void Start()
     {
-        
+        creadorDeProblemas = this;
+
+        CreateProblemInRandomRoom();
     }
 
     public void CreateProblemInRandomRoom() {
@@ -21,9 +27,5 @@ public class RandomRoomSelecter : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-
-            CreateProblemInRandomRoom();            
-        }
     }
 }

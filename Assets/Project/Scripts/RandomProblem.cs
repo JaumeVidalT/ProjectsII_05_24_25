@@ -10,7 +10,7 @@ public class RandomProblem : MonoBehaviour
         GASLEAK
     }
     
-    int dificulty;
+    public int dificulty;
     TypeOfProblem myTypeOfProblem;
 
     void Start()
@@ -18,7 +18,7 @@ public class RandomProblem : MonoBehaviour
         dificulty = Random.Range(7, 15);
         myTypeOfProblem = (TypeOfProblem)Random.Range(0,3);
 
-        Debug.Log("problem spawned with difficulty: " + dificulty + " for " + myTypeOfProblem);
+        Debug.Log("Problema de dificultad: " + dificulty + " de tipo " + myTypeOfProblem);
     }
 
 }
