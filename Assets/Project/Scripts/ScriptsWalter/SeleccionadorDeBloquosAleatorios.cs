@@ -8,6 +8,9 @@ public class SeleccionadorDeBloquosAleatorios : MonoBehaviour
 
     public GameObject bloqueo;
 
+
+
+
     public void CrearBloqueos()
     {
 

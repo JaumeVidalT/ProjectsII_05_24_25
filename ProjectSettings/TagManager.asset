@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Habitacion
+  - Oxigeno
+  - Temperatura
+  - Presion
   layers:
   - Default
   - TransparentFX
