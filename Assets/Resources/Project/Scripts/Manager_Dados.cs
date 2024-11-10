@@ -22,7 +22,7 @@ public class Manager_Dados : MonoBehaviour
         // Ensure dadoSeleccionado is within bounds to avoid errors
         if (dadoSeleccionado < 0 || dadoSeleccionado >= Dado2.Count)
         {
-            Debug.LogError("Índice de dadoSeleccionado fuera de rango.");
+            Debug.LogError("ï¿½ndice de dadoSeleccionado fuera de rango.");
             return;
         }
 
@@ -38,7 +38,7 @@ public class Manager_Dados : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"No se encontró el sprite {spriteName} en Resources/Project/Sprites");
+            Debug.LogError($"No se encontrï¿½ el sprite {spriteName} en Resources/Project/Sprites");
         }
     }
     public void BorrarDado()

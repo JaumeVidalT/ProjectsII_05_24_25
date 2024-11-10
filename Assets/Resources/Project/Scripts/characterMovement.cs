@@ -28,7 +28,7 @@ public class characterMovement : MonoBehaviour
         managerDados = FindObjectOfType<Manager_Dados>(); // Automatically finds Manager_Dados in the scene
         if (managerDados == null)
         {
-            Debug.LogError("No se encontró el componente Manager_Dados en la escena.");
+            Debug.LogError("No se encontrï¿½ el componente Manager_Dados en la escena.");
         }
         ActualizarDados();
         indicadorDeTurnos.text = "Turnos restantes: " + (contadorDeTurnosExtra - contadorDeTurnos);
