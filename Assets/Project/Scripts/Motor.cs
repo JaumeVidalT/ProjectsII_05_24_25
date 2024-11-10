@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Motor : MonoBehaviour
+public class Motor : Salas
+{
 {
     // Start is called before the first frame update
     void Start()

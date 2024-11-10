@@ -1387,6 +1387,8 @@ GameObject:
   m_Component:
   - component: {fileID: 417063631}
   - component: {fileID: 417063632}
+  - component: {fileID: 417063633}
+  - component: {fileID: 417063634}
   m_Layer: 0
   m_Name: floorOxygen
   m_TagString: Untagged
@@ -1461,6 +1463,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &417063633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417063630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e80589dc9613094eb5438fd924b9865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &417063634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417063630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e65624be3b288499bee97fdcf06476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  problem: {fileID: 0}
+  mostradorDeDificultad: {fileID: 0}
 --- !u!1 &451301386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,6 +1499,8 @@ GameObject:
   m_Component:
   - component: {fileID: 451301387}
   - component: {fileID: 451301388}
+  - component: {fileID: 451301389}
+  - component: {fileID: 451301390}
   m_Layer: 0
   m_Name: floorMotor
   m_TagString: Untagged
@@ -1545,6 +1575,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &451301389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451301386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e80589dc9613094eb5438fd924b9865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &451301390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451301386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e65624be3b288499bee97fdcf06476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  problem: {fileID: 0}
+  mostradorDeDificultad: {fileID: 0}
 --- !u!1 &515954728
 GameObject:
   m_ObjectHideFlags: 0
@@ -3375,6 +3431,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1082788853}
   - component: {fileID: 1082788854}
+  - component: {fileID: 1082788855}
+  - component: {fileID: 1082788856}
   m_Layer: 0
   m_Name: floorTemperature
   m_TagString: Untagged
@@ -3449,6 +3507,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1082788855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082788852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e80589dc9613094eb5438fd924b9865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1082788856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082788852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e65624be3b288499bee97fdcf06476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  problem: {fileID: 0}
+  mostradorDeDificultad: {fileID: 0}
 --- !u!1 &1132040751
 GameObject:
   m_ObjectHideFlags: 0
@@ -3912,7 +3996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76fc34e607693894bb84809ab7bc4530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 0.005
+  velocity: 0.1
 --- !u!50 &1306768884
 Rigidbody2D:
   serializedVersion: 4
@@ -4687,6 +4771,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1467379185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1467379187}
+  - component: {fileID: 1467379186}
+  m_Layer: 0
+  m_Name: ManageSalas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1467379186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467379185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53bb5b79d97b1ad46bdd2e2f2c869d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rooms:
+  - {fileID: 451301387}
+  - {fileID: 417063631}
+  - {fileID: 1749315831}
+  - {fileID: 1082788853}
+  - {fileID: 1597323966}
+--- !u!4 &1467379187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467379185}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0579114, y: -0.4663294, z: 0.05662795}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1522175128
 GameObject:
   m_ObjectHideFlags: 0
@@ -4827,8 +4961,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1597323966}
   - component: {fileID: 1597323967}
+  - component: {fileID: 1597323968}
+  - component: {fileID: 1597323969}
   m_Layer: 0
-  m_Name: flootPilote
+  m_Name: floorPilote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4901,6 +5037,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1597323968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597323965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e80589dc9613094eb5438fd924b9865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1597323969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597323965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e65624be3b288499bee97fdcf06476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  problem: {fileID: 0}
+  mostradorDeDificultad: {fileID: 0}
 --- !u!1 &1691509797
 GameObject:
   m_ObjectHideFlags: 0
@@ -5370,6 +5532,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1749315831}
   - component: {fileID: 1749315832}
+  - component: {fileID: 1749315833}
+  - component: {fileID: 1749315834}
   m_Layer: 0
   m_Name: floorPression
   m_TagString: Untagged
@@ -5444,6 +5608,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1749315833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749315830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e80589dc9613094eb5438fd924b9865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1749315834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749315830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e65624be3b288499bee97fdcf06476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  problem: {fileID: 0}
+  mostradorDeDificultad: {fileID: 0}
 --- !u!1 &1769732176
 GameObject:
   m_ObjectHideFlags: 0
@@ -5834,6 +6024,74 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1827372115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827372118}
+  - component: {fileID: 1827372117}
+  - component: {fileID: 1827372116}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1827372116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827372115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1827372117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827372115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1827372118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827372115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1833217891
 GameObject:
   m_ObjectHideFlags: 0
