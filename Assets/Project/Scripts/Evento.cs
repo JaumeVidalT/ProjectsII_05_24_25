@@ -8,7 +8,7 @@ public class Evento : MonoBehaviour
     public GameObject problem;  
    
 
-    public TextMeshPro mostradorDeDificultad;
+    public TextMeshProUGUI mostradorDeDificultad;
 
     public void ActualizarTexto(int restador, Salas sala)
     {

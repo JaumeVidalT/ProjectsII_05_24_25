@@ -27,11 +27,18 @@ public class ManageSalas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        foreach (Salas sala in salasList)
+        if(Input.GetKeyDown(KeyCode.W))
         {
-            Evento evento = sala.GetComponent<Evento>();
-            evento.ActualizarSala(sala);
+            foreach (Salas sala in salasList)
+            {
+                if(Random.Range(0,100)>70)
+                {
+                    Evento evento = sala.GetComponent<Evento>();
+                    evento.ActualizarSala(sala);
+                }
+            
+            }
         }
+        
     }
 }
