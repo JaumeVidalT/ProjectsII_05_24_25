@@ -11,7 +11,8 @@ public class characterMovement : MonoBehaviour
     RandomProblem problem = null;
     RandomProblem bloqueo = null;
     int valorParaBloqueo = 0;
-
+    private bool dadosMostrados = false;
+    public int finalDiceSum ;
     const int elExtra = 4;
 
     int contadorDeTurnos = 0;
@@ -31,7 +32,7 @@ public class characterMovement : MonoBehaviour
             Debug.LogError("No se encontr� el componente Manager_Dados en la escena.");
         }
         ActualizarDados();
-        indicadorDeTurnos.text = "Turnos restantes: " + (contadorDeTurnosExtra - contadorDeTurnos);
+        /*indicadorDeTurnos.text = "Turnos restantes: " + (contadorDeTurnosExtra - contadorDeTurnos);*/
     }
 
     void SiguienteTurno()
@@ -48,7 +49,7 @@ public class characterMovement : MonoBehaviour
             ActualizarDados();
         }
 
-        indicadorDeTurnos.text = "Turnos restantes: " + (contadorDeTurnosExtra - contadorDeTurnos);
+        /*indicadorDeTurnos.text = "Turnos restantes: " + (contadorDeTurnosExtra - contadorDeTurnos);*/
     }
 
     void ActualizarDados() {
@@ -68,64 +69,75 @@ public class characterMovement : MonoBehaviour
         //lanzar dados con espacio y comprovar si la dificultad es menor igual o mayor al resultado
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            managerDados.BorrarDado(dadosLanzables);
-            int finalDiceSum = 0;
-            int rollDice;
-            for (int i = 0; i < dadosLanzables; i++)
+
+            if (!dadosMostrados)  // Lógica para mostrar los dados solo si no han sido lanzados ya
             {
+                finalDiceSum = 0;
+                int rollDice;
 
-                rollDice = Random.Range(1, 7);
-                managerDados.PrintDado( rollDice, i);
-                finalDiceSum += rollDice;
-            }
-            dadosLanzables--;
-
-            if (problem)
-            {
-                if (finalDiceSum >= problem.dificulty)
+                // Lanzamos los dados y mostramos el resultado
+                for (int i = 0; i < dadosLanzables; i++)
                 {
-                    //Debug.Log("Problema de dificultad " + problem.dificulty + " resuelto con un " + finalDiceSum);
-                    Destroy(problem.gameObject);
-                    problem = null;
-                }
-                else
-                {
-                    //Debug.Log("Problema de dificultad " + problem.dificulty + " NO resuelto con un " + finalDiceSum);
-                    //Debug.Log("Problema reducido a " + (problem.dificulty - finalDiceSum));
-
-                    //problem.dificulty -= finalDiceSum;
-                    problem.ActualizarTexto(finalDiceSum);
+                    rollDice = Random.Range(1, 7);
+                    managerDados.PrintDado(rollDice, i);
+                    finalDiceSum += rollDice;
                 }
 
-                if (dadosLanzables > 1)
+                // Mostrar el resultado en la interfaz
+                dadosMostrados = true; // Marcamos que los dados están visibles
+                if (problem)
+                {
+                    if (finalDiceSum >= problem.dificulty)
+                    {
+                        //Debug.Log("Problema de dificultad " + problem.dificulty + " resuelto con un " + finalDiceSum);
+                        Destroy(problem.gameObject);
+                        problem = null;
+                    }
+                    else
+                    {
+                        //Debug.Log("Problema de dificultad " + problem.dificulty + " NO resuelto con un " + finalDiceSum);
+                        //Debug.Log("Problema reducido a " + (problem.dificulty - finalDiceSum));
+
+                        //problem.dificulty -= finalDiceSum;
+                        problem.ActualizarTexto(finalDiceSum);
+                    }
+
+                    if (dadosLanzables > 1)
+                        dadosLanzables--;
+                }
+                else if (bloqueo)
+                {
+
+                    if (finalDiceSum >= valorParaBloqueo)
+                    {
+                        //Debug.Log("Bloqueo de dificultad " + bloqueo.dificulty + " resuelto con un " + finalDiceSum);
+                        Destroy(bloqueo.gameObject);
+                        bloqueo = null;
+                    }
+                    else
+                    {
+                        Debug.Log("Bloqueo de dificultad " + bloqueo.dificulty + " NO resuelto con un " + finalDiceSum);
+                        Debug.Log("Bloqueo reducido a " + (bloqueo.dificulty - finalDiceSum));
+
+                        bloqueo.ActualizarTexto(finalDiceSum);
+                    }
+
+                    if (dadosLanzables > 1)
+                        dadosLanzables--;
+                }
+                else if(dadosLanzables > 1)
+                {
                     dadosLanzables--;
+                }
             }
-            else if (bloqueo)
+            else  // Lógica para borrar los dados y permitir una nueva tirada
             {
-
-                if (finalDiceSum >= valorParaBloqueo)
-                {
-                    //Debug.Log("Bloqueo de dificultad " + bloqueo.dificulty + " resuelto con un " + finalDiceSum);
-                    Destroy(bloqueo.gameObject);
-                    bloqueo = null;
-                }
-                else
-                {
-                    Debug.Log("Bloqueo de dificultad " + bloqueo.dificulty + " NO resuelto con un " + finalDiceSum);
-                    Debug.Log("Bloqueo reducido a " + (bloqueo.dificulty - finalDiceSum));
-
-                    bloqueo.ActualizarTexto(finalDiceSum);
-                }
-
-                if (dadosLanzables > 1)
-                    dadosLanzables--;
+                managerDados.BorrarDado(dadosLanzables);  // Borramos todos los dados
+                dadosMostrados = false;  // Permitimos que se muestre el próximo lanzamiento de dados
+                SiguienteTurno();
+                ActualizarDados();
             }
-
-
             
-
-            ActualizarDados();
-            SiguienteTurno();
         }
     }
 
