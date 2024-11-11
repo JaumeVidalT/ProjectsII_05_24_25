@@ -6,13 +6,20 @@ using UnityEngine.UI;
 public class Manager_Dados : MonoBehaviour
 {
     public List<Image> Dado2 = new List<Image>();  // Array to store references to multiple dice images
-
     private void Start()
     {
         // Assign each Dado2[i] to a unique GameObject named "Dado2_i" in the scene
-        for (int i = 0; i < Dado2.Count; i++)
+        for (int i = 0; i < 4; i++)  // Ajusta el número de dados que tienes en la escena
         {
-            Dado2[i] = GameObject.Find($"Dado2_{i + 1}").GetComponent<Image>();
+            Image dado = GameObject.Find($"Dado{i + 1}").GetComponent<Image>();
+            if (dado != null)
+            {
+                Dado2.Add(dado);  // Agrega cada dado a la lista
+            }
+            else
+            {
+                Debug.LogError($"No se encontró el dado Dado{i + 1} en la escena.");
+            }
         }
     }
 
@@ -22,7 +29,7 @@ public class Manager_Dados : MonoBehaviour
         // Ensure dadoSeleccionado is within bounds to avoid errors
         if (dadoSeleccionado < 0 || dadoSeleccionado >= Dado2.Count)
         {
-            Debug.LogError("ï¿½ndice de dadoSeleccionado fuera de rango.");
+            Debug.LogError("Índice de dadoSeleccionado fuera de rango.");
             return;
         }
 
@@ -33,18 +40,32 @@ public class Manager_Dados : MonoBehaviour
         Sprite newSprite = Resources.Load<Sprite>(spriteName);
         if (newSprite != null)
         {
-            Debug.Log("hola que hace");
             Dado2[dadoSeleccionado].sprite = newSprite;
         }
         else
         {
-            Debug.LogError($"No se encontrï¿½ el sprite {spriteName} en Resources/Project/Sprites");
+            Debug.LogError($"No se encontró el sprite {spriteName} en Resources/Project/Sprites");
         }
     }
-    public void BorrarDado()
+    public void BorrarDado(int ultimoIndice)
     {
-        Dado2[Dado2.Count - 1].gameObject.SetActive(false);
-        Dado2.RemoveAt(Dado2.Count - 1);
+        if (Dado2.Count > 0)
+        {
+            // Ocultar el último dado y eliminarlo de la lista
+            Dado2[ultimoIndice].gameObject.SetActive(false);
+        }
+    }
+    public void Restart(int DadosIniciales)
+    {
+        
+        // Volver a agregar los dados a la lista
+        for (int i = 0; i < DadosIniciales; i++)
+        {
+
+            Dado2[i].gameObject.SetActive(true);  // Asegurarse de que el dado esté activo
+            
+           
+        }
     }
 
 }

@@ -44,6 +44,7 @@ public class characterMovement : MonoBehaviour
             SeleccionadorDeBloquosAleatorios.instancia.CrearBloqueos();
             contadorDeTurnosExtra = contadorDeTurnos + elExtra;
             dadosLanzables = 4;
+            managerDados.Restart(5);
             ActualizarDados();
         }
 
@@ -67,7 +68,7 @@ public class characterMovement : MonoBehaviour
         //lanzar dados con espacio y comprovar si la dificultad es menor igual o mayor al resultado
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            managerDados.BorrarDado();
+            managerDados.BorrarDado(dadosLanzables);
             int finalDiceSum = 0;
             int rollDice;
             for (int i = 0; i < dadosLanzables; i++)
