@@ -9,7 +9,7 @@ public class Manager_Dados : MonoBehaviour
     private void Start()
     {
         // Assign each Dado2[i] to a unique GameObject named "Dado2_i" in the scene
-        for (int i = 0; i < 4; i++)  // Ajusta el número de dados que tienes en la escena
+        for (int i = 0; i < 12; i++)  // Ajusta el número de dados que tienes en la escena
         {
             Image dado = GameObject.Find($"Dado{i + 1}").GetComponent<Image>();
             if (dado != null)
@@ -25,7 +25,8 @@ public class Manager_Dados : MonoBehaviour
 
     public void PrintDado(int rollDice, int dadoSeleccionado)
     {
-        
+        Debug.Log("Entrando a PrintDado con dadoSeleccionado: " + dadoSeleccionado);
+
         // Ensure dadoSeleccionado is within bounds to avoid errors
         if (dadoSeleccionado < 0 || dadoSeleccionado >= Dado2.Count)
         {
@@ -57,14 +58,11 @@ public class Manager_Dados : MonoBehaviour
     }
     public void Restart(int DadosIniciales)
     {
-        
-        // Volver a agregar los dados a la lista
+        DadosIniciales = Mathf.Min(DadosIniciales, Dado2.Count); // Limitar al tamaño de Dado2
+
         for (int i = 0; i < DadosIniciales; i++)
         {
-
-            Dado2[i].gameObject.SetActive(true);  // Asegurarse de que el dado esté activo
-            
-           
+            Dado2[i].gameObject.SetActive(true);
         }
     }
 
