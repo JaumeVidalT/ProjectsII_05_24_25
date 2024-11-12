@@ -4,7 +4,7 @@ public class SeleccionadorDeBloquosAleatorios : MonoBehaviour
 {
     public static SeleccionadorDeBloquosAleatorios instancia = null;
 
-    public Transform[] openings;
+    public GameObject[] puertas;
 
     public GameObject bloqueo;
 
@@ -14,9 +14,22 @@ public class SeleccionadorDeBloquosAleatorios : MonoBehaviour
     public void CrearBloqueos()
     {
 
-        int randomIndex = Random.Range(0, openings.Length);
+        //int randomIndex = Random.Range(0, puertas.Length);
+        //Instantiate(bloqueo, puertas[randomIndex].position, Quaternion.identity);
+        
+        
 
-        Instantiate(bloqueo, openings[randomIndex].position, Quaternion.identity);
+        int randomIndex;
+        for (int i = 0; i < 50; i++)
+        {
+            randomIndex = Random.Range(0, puertas.Length);
+
+            if (puertas[randomIndex].activeSelf == false)
+            {
+                puertas[randomIndex].SetActive(true);
+                i = 50;
+            }
+        }
     }
 
     void Start()
@@ -24,7 +37,7 @@ public class SeleccionadorDeBloquosAleatorios : MonoBehaviour
         instancia = this;
 
 
-        CrearBloqueos();
+        //CrearBloqueos();
     }
 
 }

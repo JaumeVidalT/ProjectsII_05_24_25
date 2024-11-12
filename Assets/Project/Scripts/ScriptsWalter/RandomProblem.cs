@@ -8,7 +8,6 @@ public class RandomProblem : MonoBehaviour
         FIRE,
         SHORTCIRCUIT,
         GAS,
-        OTRO,
         NONE
     }
 
@@ -20,31 +19,58 @@ public class RandomProblem : MonoBehaviour
     public void ActualizarTexto(int restador) {
         dificulty -= restador;
 
-        mostradorDeDificultad.text = dificulty.ToString() + myTypeOfProblem.ToString();
+        mostradorDeDificultad.text = dificulty.ToString(); // + myTypeOfProblem.ToString();
+
+        switch (myTypeOfProblem)
+        {
+            case TypeOfProblem.FIRE:
+                mostradorDeDificultad.text += "-O";
+                break;
+            case TypeOfProblem.SHORTCIRCUIT:
+                mostradorDeDificultad.text += "-T";
+                break;
+            case TypeOfProblem.GAS:
+                mostradorDeDificultad.text += "-P";
+                break;
+
+            default:
+                break;
+        }
     }
 
     void Start()
     {
-        dificulty = Random.Range(7, 15);
-        if (myTypeOfProblem != TypeOfProblem.NONE) 
-            myTypeOfProblem = (TypeOfProblem)Random.Range(0, 3);
-
+        /*dificulty = Random.Range(7, 15);
         ActualizarTexto(0);
+
+        if (myTypeOfProblem != TypeOfProblem.NONE)
+            myTypeOfProblem = (TypeOfProblem)Random.Range(0, 3);*/
 
         //Debug.Log("Creado problema de dificultad: " + dificulty + " de tipo " + myTypeOfProblem);
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.H))
-        {
-            ActualizadorDeMedidores.instance.Actualizar(this);
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
+        dificulty = Random.Range(7, 15);
+        
+
+        if (myTypeOfProblem != TypeOfProblem.NONE)
+            myTypeOfProblem = (TypeOfProblem)Random.Range(0, 3);
+
+        ActualizarTexto(0);
+    }
+
+    /*private void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.H))
+        //{
+        //    ActualizadorDeMedidores.instance.Actualizar(this);
+        //}
+        if (Input.GetKeyDown(KeyCode.E))
         {
             //if(myTypeOfProblem != TypeOfProblem.OTRO && myTypeOfProblem != TypeOfProblem.NONE)
                 Destroy(this.gameObject);
         }
         
-    }
+    }*/
 }
