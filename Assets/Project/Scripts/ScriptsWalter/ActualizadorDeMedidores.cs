@@ -11,9 +11,9 @@ public class ActualizadorDeMedidores : MonoBehaviour
     public Image barraTemperatura;
     public Image barraPresion;
 
-    float bO = 1.0f;
-    float bT = 1.0f;
-    float bP = 1.0f;
+    public float bO = 1.0f;
+    public float bT = 1.0f;
+    public float bP = 1.0f;
 
     private void Awake() {
         
@@ -46,7 +46,14 @@ public class ActualizadorDeMedidores : MonoBehaviour
         
     }
 
-    private void Update()
+
+    public void Actualizar() {
+
+        barraOxigeno.fillAmount = bO;
+        barraTemperatura.fillAmount = bT;
+        barraPresion.fillAmount = bP;
+    }
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.O)) {
             bO = 1.0f;
@@ -60,6 +67,6 @@ public class ActualizadorDeMedidores : MonoBehaviour
             bT = 1.0f;
             barraTemperatura.fillAmount = bT;
         }
-    }
+    }*/
 
 }
