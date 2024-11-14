@@ -8,7 +8,7 @@ public class CharacterControllerWalter : MonoBehaviour
     public float velocity;
     float movementX, movementY;
     
-    int dadosLanzables = 12;
+    int dadosLanzables = 4;
     int dadosSeleccionados = 1;
     private Manager_Dados managerDados;
     RandomProblem problem = null;
@@ -18,12 +18,12 @@ public class CharacterControllerWalter : MonoBehaviour
     //int valorParaBloqueo = 0;
     private bool dadosMostrados = false;
     const int recuperarTurnos = 5;
-    const int recuperarDados = 12;
+    const int recuperarDados = 4;
 
     int contadorDeTurnos = 0;
     int contadorDeTurnosExtra = recuperarTurnos;
 
-
+    public Canvas CanvaDados;
     public TextMeshProUGUI indicadorDeDados;
     public TextMeshProUGUI indicadorDeTurnos;
     public TextMeshProUGUI IndicadorDadosSeleccionados;
@@ -78,13 +78,13 @@ public class CharacterControllerWalter : MonoBehaviour
         {
             if (!dadosMostrados) // Solo lanza dados si aún no han sido lanzados en este turno
             {
-                ConfirmarResultado.gameObject.SetActive(true);
+                /*CanvaDados.gameObject.SetActive(true);*/
                 ConfirmarResultado.text = "Espacio para confirmar Resultado";
                 LanzarDados();
             }
             else  // Si los dados ya fueron lanzados, borra los dados y pasa al siguiente turno
             {
-                ConfirmarResultado.gameObject.SetActive(false);
+                /*CanvaDados.gameObject.SetActive(false);*/
                 BorrarDadosYReiniciarTurno();
                 
             }
@@ -109,6 +109,7 @@ public class CharacterControllerWalter : MonoBehaviour
         for (int i = 0; i < dadosSeleccionados; i++)
         {
             int dadoActual = Random.Range(1, 6);
+            Debug.Log(dadoActual);
             managerDados.PrintDado(dadoActual, i);
             finalDiceSum += dadoActual;
         }

@@ -9,7 +9,7 @@ public class Manager_Dados : MonoBehaviour
     private void Start()
     {
         // Assign each Dado2[i] to a unique GameObject named "Dado2_i" in the scene
-        for (int i = 0; i < 12; i++)  // Ajusta el número de dados que tienes en la escena
+        for (int i = 0; i < 4; i++)  // Ajusta el número de dados que tienes en la escena
         {
             Image dado = GameObject.Find($"Dado{i + 1}").GetComponent<Image>();
             if (dado != null)
