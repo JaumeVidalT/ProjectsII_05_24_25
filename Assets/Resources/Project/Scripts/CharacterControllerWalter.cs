@@ -136,10 +136,15 @@ public class CharacterControllerWalter : MonoBehaviour
         if (dadosLanzables > 0)
         {
             // Desactiva el último dado
-            managerDados.BorrarDado(dadosLanzables - 1);
+            
 
             // Reduce el contador de dados disponibles
-            dadosLanzables--;
+            if(dadosSeleccionados>1)
+            {
+                managerDados.BorrarDado(dadosLanzables-1);
+                dadosLanzables--;
+            }
+            
 
             // Actualiza la visualización de dados
             ActualizarDados();
