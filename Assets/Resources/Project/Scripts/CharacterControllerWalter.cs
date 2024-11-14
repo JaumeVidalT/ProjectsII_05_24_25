@@ -78,13 +78,13 @@ public class CharacterControllerWalter : MonoBehaviour
         {
             if (!dadosMostrados) // Solo lanza dados si aún no han sido lanzados en este turno
             {
-                /*CanvaDados.gameObject.SetActive(true);*/
+                ConfirmarResultado.gameObject.SetActive(true);
                 ConfirmarResultado.text = "Espacio para confirmar Resultado";
                 LanzarDados();
             }
             else  // Si los dados ya fueron lanzados, borra los dados y pasa al siguiente turno
             {
-                /*CanvaDados.gameObject.SetActive(false);*/
+                ConfirmarResultado.gameObject.SetActive(false);
                 BorrarDadosYReiniciarTurno();
                 
             }
