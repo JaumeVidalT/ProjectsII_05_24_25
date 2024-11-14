@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ActualizadorDeMedidores : MonoBehaviour
 {
@@ -15,9 +16,27 @@ public class ActualizadorDeMedidores : MonoBehaviour
     public float bT = 1.0f;
     public float bP = 1.0f;
 
+    public int cuantosFuegosNum = 0;
+    public TextMeshProUGUI cuantosFuegos;
+    public int cuantosCortocircuitosNum = 0;
+    public TextMeshProUGUI cuantosCortocircuitos;
+    public int cuantosGasesNum = 0;
+    public TextMeshProUGUI cuantosGases;
+
+    int turnosVivo = 0;
+
     private void Awake() {
         
         instance = this;
+    }
+
+    public void TurnoVivo() { 
+        turnosVivo++;
+
+        if (turnosVivo >= 50)
+        {
+            CambiadorDeEscenas.instance.VerVictoria();
+        }
     }
 
     public void Actualizar(RandomProblem problema) {
@@ -43,7 +62,12 @@ public class ActualizadorDeMedidores : MonoBehaviour
                 break;
         }
 
-        
+        cuantosFuegos.text = cuantosFuegosNum.ToString();
+        cuantosCortocircuitos.text = cuantosCortocircuitosNum.ToString();
+        cuantosGases.text = cuantosGasesNum.ToString();
+
+        if (bP <= 0 || bO <= 0 || bT <= 0)
+            CambiadorDeEscenas.instance.VerDerrota();
     }
 
 
@@ -52,6 +76,10 @@ public class ActualizadorDeMedidores : MonoBehaviour
         barraOxigeno.fillAmount = bO;
         barraTemperatura.fillAmount = bT;
         barraPresion.fillAmount = bP;
+
+        cuantosFuegos.text = cuantosFuegosNum.ToString();
+        cuantosCortocircuitos.text = cuantosCortocircuitosNum.ToString();
+        cuantosGases.text = cuantosGasesNum.ToString();
     }
     /*private void Update()
     {

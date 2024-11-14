@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Project/Scene/MainScene.unity
+    path: Assets/Resources/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Resources/Project/Scene/WalterScene.unity
+    guid: 7de49962970e24c4dba90a8430cd7205
+  - enabled: 1
+    path: Assets/Resources/Project/Scene/WalterScene_UI.unity
+    guid: 769c07daadf065444aafd96cbba02a81
+  - enabled: 1
+    path: Assets/Resources/Project/Scene/EscenaMenu.unity
+    guid: 1c6a7611f15643645a3257f2b2a3a318
+  - enabled: 1
+    path: Assets/Resources/Project/Scene/EscenaDerrota.unity
+    guid: 62bde60ea9a9fb44db42cd933ee072d5
+  - enabled: 1
+    path: Assets/Resources/Project/Scene/EscenaVictoria.unity
+    guid: b3248289cc7edbf428618c51d3dc4640
   m_configObjects: {}
