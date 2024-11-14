@@ -27,6 +27,7 @@ public class CharacterControllerWalter : MonoBehaviour
     public TextMeshProUGUI indicadorDeDados;
     public TextMeshProUGUI indicadorDeTurnos;
     public TextMeshProUGUI IndicadorDadosSeleccionados;
+    public TextMeshProUGUI ConfirmarResultado;
 
     static CharacterControllerWalter instance = null;
     void Start()
@@ -77,10 +78,13 @@ public class CharacterControllerWalter : MonoBehaviour
         {
             if (!dadosMostrados) // Solo lanza dados si aún no han sido lanzados en este turno
             {
+                ConfirmarResultado.gameObject.SetActive(true);
+                ConfirmarResultado.text = "Espacio para confirmar Resultado";
                 LanzarDados();
             }
             else  // Si los dados ya fueron lanzados, borra los dados y pasa al siguiente turno
-            {               
+            {
+                ConfirmarResultado.gameObject.SetActive(false);
                 BorrarDadosYReiniciarTurno();
                 
             }
