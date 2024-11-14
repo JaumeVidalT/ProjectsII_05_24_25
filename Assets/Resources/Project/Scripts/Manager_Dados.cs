@@ -25,7 +25,8 @@ public class Manager_Dados : MonoBehaviour
 
     public void PrintDado(int rollDice, int dadoSeleccionado)
     {
-        
+        Debug.Log("Entrando a PrintDado con dadoSeleccionado: " + dadoSeleccionado);
+
         // Ensure dadoSeleccionado is within bounds to avoid errors
         if (dadoSeleccionado < 0 || dadoSeleccionado >= Dado2.Count)
         {
@@ -57,14 +58,11 @@ public class Manager_Dados : MonoBehaviour
     }
     public void Restart(int DadosIniciales)
     {
-        
-        // Volver a agregar los dados a la lista
+        DadosIniciales = Mathf.Min(DadosIniciales, Dado2.Count); // Limitar al tamaño de Dado2
+
         for (int i = 0; i < DadosIniciales; i++)
         {
-
-            Dado2[i].gameObject.SetActive(true);  // Asegurarse de que el dado esté activo
-            
-           
+            Dado2[i].gameObject.SetActive(true);
         }
     }
 
