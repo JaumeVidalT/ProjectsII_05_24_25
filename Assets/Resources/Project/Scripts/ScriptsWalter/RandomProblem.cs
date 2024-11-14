@@ -21,7 +21,7 @@ public class RandomProblem : MonoBehaviour
 
         mostradorDeDificultad.text = dificulty.ToString(); // + myTypeOfProblem.ToString();
 
-        switch (myTypeOfProblem)
+        /*switch (myTypeOfProblem)
         {
             case TypeOfProblem.FIRE:
                 mostradorDeDificultad.text += "-O";
@@ -35,7 +35,7 @@ public class RandomProblem : MonoBehaviour
 
             default:
                 break;
-        }
+        }*/
     }
 
     void Start()
@@ -57,9 +57,57 @@ public class RandomProblem : MonoBehaviour
         if (myTypeOfProblem != TypeOfProblem.NONE)
             myTypeOfProblem = (TypeOfProblem)Random.Range(0, 3);
 
+        switch (myTypeOfProblem)
+        {
+            case TypeOfProblem.FIRE:
+                GetComponent<SpriteRenderer>().sprite =
+                    GameObject.Find("Fuego").GetComponent<SpriteRenderer>().sprite;
+
+                ActualizadorDeMedidores.instance.cuantosFuegosNum++;
+                break;
+
+            case TypeOfProblem.SHORTCIRCUIT:
+                GetComponent<SpriteRenderer>().sprite =
+                    GameObject.Find("Rayo").GetComponent<SpriteRenderer>().sprite;
+
+                ActualizadorDeMedidores.instance.cuantosCortocircuitosNum++;
+                break;
+            case TypeOfProblem.GAS:
+                GetComponent<SpriteRenderer>().sprite =
+                    GameObject.Find("Gas").GetComponent<SpriteRenderer>().sprite;
+
+                ActualizadorDeMedidores.instance.cuantosGasesNum++;
+                break;
+
+            default:
+                break;
+        }
+
         ActualizarTexto(0);
     }
 
+    private void OnDisable()
+    {
+        switch (myTypeOfProblem)
+        {
+            case TypeOfProblem.FIRE:
+                ActualizadorDeMedidores.instance.cuantosFuegosNum--;
+                break;
+
+            case TypeOfProblem.SHORTCIRCUIT:
+                ActualizadorDeMedidores.instance.cuantosCortocircuitosNum--;
+                break;
+
+            case TypeOfProblem.GAS:
+                ActualizadorDeMedidores.instance.cuantosGasesNum--;
+                break;
+
+            default:
+                break;
+        }
+
+        ActualizadorDeMedidores.instance.Actualizar();
+    }
     /*private void Update()
     {
         //if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.H))
