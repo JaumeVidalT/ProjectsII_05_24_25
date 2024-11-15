@@ -17,6 +17,7 @@ public class RandomRoomSelecter : MonoBehaviour
         creadorDeProblemas = this;
 
         //CreateProblemInRandomRoom();
+        problemas[0].SetActive(true);
     }
 
     public void CreateProblemInRandomRoom()
@@ -35,7 +36,19 @@ public class RandomRoomSelecter : MonoBehaviour
                 i = 50;
             }
         }
-        
+
+        for (int i = 0; i < 50; i++)
+        {
+            randomIndex = Random.Range(0, problemas.Length);
+
+            if (problemas[randomIndex].activeSelf == false)
+            {
+                problemas[randomIndex].SetActive(true);
+                flechas[randomIndex].SetActive(true);
+                i = 50;
+            }
+        }
+
     }
 
     public void RestarLosMedidores() {

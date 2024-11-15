@@ -28,12 +28,16 @@ public class ActualizadorDeMedidores : MonoBehaviour
     private void Awake() {
         
         instance = this;
+
+        cuantosFuegos.text = "problemas\n" + cuantosFuegosNum.ToString();
+        cuantosCortocircuitos.text = "problemas\n" + cuantosCortocircuitosNum.ToString();
+        cuantosGases.text = "problemas\n" + cuantosGasesNum.ToString();
     }
 
     public void TurnoVivo() { 
         turnosVivo++;
 
-        if (turnosVivo >= 50)
+        if (turnosVivo >= 20)
         {
             CambiadorDeEscenas.instance.VerVictoria();
         }
@@ -62,9 +66,9 @@ public class ActualizadorDeMedidores : MonoBehaviour
                 break;
         }
 
-        cuantosFuegos.text = cuantosFuegosNum.ToString();
-        cuantosCortocircuitos.text = cuantosCortocircuitosNum.ToString();
-        cuantosGases.text = cuantosGasesNum.ToString();
+        cuantosFuegos.text = "problemas " + cuantosFuegosNum.ToString();
+        cuantosCortocircuitos.text = "problemas " + cuantosCortocircuitosNum.ToString();
+        cuantosGases.text = "problemas " + cuantosGasesNum.ToString();
 
         if (bP <= 0 || bO <= 0 || bT <= 0)
             CambiadorDeEscenas.instance.VerDerrota();
@@ -77,9 +81,9 @@ public class ActualizadorDeMedidores : MonoBehaviour
         barraTemperatura.fillAmount = bT;
         barraPresion.fillAmount = bP;
 
-        cuantosFuegos.text = cuantosFuegosNum.ToString();
-        cuantosCortocircuitos.text = cuantosCortocircuitosNum.ToString();
-        cuantosGases.text = cuantosGasesNum.ToString();
+        cuantosFuegos.text = "problemas " + cuantosFuegosNum.ToString();
+        cuantosCortocircuitos.text = "problemas " + cuantosCortocircuitosNum.ToString();
+        cuantosGases.text = "problemas " + cuantosGasesNum.ToString();
     }
     /*private void Update()
     {
