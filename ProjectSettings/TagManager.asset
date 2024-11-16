@@ -8,6 +8,8 @@ TagManager:
   - Oxigeno
   - Temperatura
   - Presion
+  - Destruible
+  - Minijuego
   layers:
   - Default
   - TransparentFX
