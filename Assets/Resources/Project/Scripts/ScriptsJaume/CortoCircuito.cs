@@ -60,7 +60,7 @@ public class CortoCircuito : Minijuego
     }
     public void setBadCable()
     {
-        CablesBuenos[Random.Range(0, cables/2)] = false;
+        CablesBuenos[Random.Range(0, cables)] = false;
     }
     public override void TerminarMinijuego()
     {
