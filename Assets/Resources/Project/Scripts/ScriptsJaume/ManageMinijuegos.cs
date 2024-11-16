@@ -35,10 +35,14 @@ public class ManageMinijuegos : MonoBehaviour
                 minijuegos.Add(minijuego);
             }
         }
+        DesactivarTodosLosMinijuegos();
     }
     void Update()
     {
-        IniciarMinijuego(0);
+            IniciarMinijuego(0);
+            IniciarMinijuego(1);
+        
+                                  
     }
     public void IniciarMinijuego(int index)
     {
@@ -46,6 +50,7 @@ public class ManageMinijuegos : MonoBehaviour
         {
             if (!minijuegos[index].VerificarJuegoCompletado())
             {
+                minijuegos[index].gameObject.SetActive(true);
                 minijuegos[index].IniciarMinijuego();
             }
             else
@@ -58,6 +63,14 @@ public class ManageMinijuegos : MonoBehaviour
         {
             Debug.LogWarning("Índice fuera de rango.");
         }
+    }
+    public void DesactivarTodosLosMinijuegos()
+    {
+        foreach (var minijuego in minijuegos)
+        {
+            minijuego.gameObject.SetActive(false);
+        }
+        Debug.Log("Todos los mini-juegos han sido desactivados.");
     }
 
 
