@@ -42,13 +42,25 @@ public class CortoCircuito : Minijuego
         {
             if (CablesBuenos[i]==false)
             {
-                Cortocircuito.transform.position = Cables[i].transform.TransformPoint(Vector3.zero);
+                switch(i)
+                {
+                    case 0:
+                        Cortocircuito.transform.position = Cables[5].transform.position;
+                        break;
+                    case 1:
+                        Cortocircuito.transform.position = Cables[3].transform.position;
+                        break;
+                    case 2:
+                        Cortocircuito.transform.position = Cables[4].transform.position;
+                        break;
+                }
+               
             }
         }  
     }
     public void setBadCable()
     {
-        CablesBuenos[Random.Range(0, cables)] = false;
+        CablesBuenos[Random.Range(0, cables/2)] = false;
     }
     public override void TerminarMinijuego()
     {
