@@ -14,8 +14,8 @@ public class DestruirConClick : MonoBehaviour
     public float harmonicaSpeed = 0.01f;// Velocidad de movimiento de la armónica
     public GraphicRaycaster raycaster;
     public EventSystem eventSystem;
-    bool Trigger = true;
-    bool Subir = false;
+    private bool Trigger = true;
+    private bool Subir = false;
     private void Start()
     {
         
@@ -49,7 +49,6 @@ public class DestruirConClick : MonoBehaviour
                 if (hit.collider.CompareTag(tagDestruible))
                 {
                     hit.collider.gameObject.SetActive(false);
-                    Debug.Log($"Objeto {hit.collider.name} destruido.");
                 }
                 
             }
@@ -57,7 +56,6 @@ public class DestruirConClick : MonoBehaviour
             {
                 if (result.gameObject.CompareTag(tagHarmonica))
                 {
-                    Debug.Log("Harmonica detectada.");
                     Image harmonicaImage = result.gameObject.GetComponent<Image>();
 
                     if (harmonicaImage != null)
@@ -80,7 +78,6 @@ public class DestruirConClick : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("hola");
                             float mousePosition = Input.mousePosition.y;
                             float deltaY = mousePosition -previousMouseY;
                             harmonicaImage.fillAmount = Mathf.Clamp(harmonicaImage.fillAmount + deltaY * harmonicaSpeed, movementThresholdMin, movementThresholdMax);

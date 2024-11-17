@@ -39,8 +39,7 @@ public class ManageMinijuegos : MonoBehaviour
     }
     void Update()
     {
-            IniciarMinijuego(0);
-            IniciarMinijuego(1);
+            IniciarMinijuego(2);
         
                                   
     }
