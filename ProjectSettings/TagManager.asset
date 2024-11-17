@@ -10,6 +10,7 @@ TagManager:
   - Presion
   - Destruible
   - Minijuego
+  - Harmonica
   layers:
   - Default
   - TransparentFX
