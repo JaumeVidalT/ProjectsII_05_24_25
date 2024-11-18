@@ -4,26 +4,58 @@ using UnityEngine;
 using TMPro;
 public class Evento : MonoBehaviour
 {
-    protected float ActualStatus;
-    public GameObject problem;  
-   
-
-    public TextMeshProUGUI mostradorDeDificultad;
-
-    public void ActualizarTexto(int restador, Salas sala)
+    public enum TypeOfProblem
     {
-        sala.modifyDificulty(restador);
-        mostradorDeDificultad.text = sala.getDificulty(sala).ToString();
-    }
+        FIRE,
+        SHORTCIRCUIT,
+        GASLEAK
+    };
+    protected TypeOfProblem myTypeOfProblem;
+    protected int dificulty;
 
     public void ActualizarSala(Salas sala)  // Cambié el nombre del método
     {
-        sala.modifyDificulty(Random.Range(7, 15)) ;
-        sala.setTypeOfProblem(Random.Range(0, 3));
+        setTypeOfProblem(Random.Range(0, 3));
+        // Pasamos el valor de dificultad correcto
+        string spriteName="";
+        switch (myTypeOfProblem)
+        {
+            case TypeOfProblem.FIRE:
+                spriteName = $"Project/Sprites/Fuego";
+                break;
+            case TypeOfProblem.SHORTCIRCUIT:
+                spriteName = $"Project/Sprites/Rayo";
+                break;
+            case TypeOfProblem.GASLEAK:
+                spriteName = $"Project/Sprites/Gas";
+                break;
+        }
+        
 
-        ActualizarTexto(sala.getDificulty(sala), sala);  // Pasamos el valor de dificultad correcto
-        Instantiate(problem, sala.transform.position, Quaternion.identity);
+        // Load the sprite using the generated name
+        Sprite newSprite = Resources.Load<Sprite>(spriteName);
+        if (newSprite != null)
+        {
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = newSprite;
+        }
 
-        Debug.Log("Creado problema de dificultad: " + sala.getDificulty(sala) + " de tipo " + sala.getTypeOfProblem());
+        Debug.Log("Creado problema de dificultad: " + getDificulty() + " de tipo " + getTypeOfProblem());
+    }
+    public TypeOfProblem getTypeOfProblem()
+    {
+        return myTypeOfProblem;
+    }
+    public void setTypeOfProblem(int amount)
+    {
+        myTypeOfProblem = (TypeOfProblem)amount;
+    }
+    public int getDificulty()
+    {
+        return dificulty;
+    }
+    public void modifyDificulty(int amount)
+    {
+        dificulty = amount;
     }
 }
