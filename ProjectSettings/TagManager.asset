@@ -3,17 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Habitacion
-  - Oxigeno
-  - Temperatura
-  - Presion
-<<<<<<< HEAD
-  - Destruible
-  - Minijuego
-  - Harmonica
-=======
->>>>>>> parent of 57bbbec (Feature Gas Terminada)
+  tags: []
   layers:
   - Default
   - TransparentFX
