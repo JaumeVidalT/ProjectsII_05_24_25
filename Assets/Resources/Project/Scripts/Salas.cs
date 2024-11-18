@@ -5,34 +5,30 @@ using UnityEngine;
 public class Salas : MonoBehaviour
 {
     // Start is called before the first frame update
-    protected Evento EventoSala;
+    public Evento EventoSala;
     protected bool enSala;
-    protected int dificulty;
+    private bool EventoEnSala=false;
+    public Salas salaArriba;
+    public Salas salaAbajo;
+    public Salas salaIzquierda;
+    public Salas salaDerecha;
+    public string nombre;
+    // Update is called once per fram
+    public Salas(string nombre)
+    {
+        this.nombre = nombre;
+    }
+    public void UpdateSala()
+    {
+        EventoSala.ActualizarSala(this);
+        Instantiate(EventoSala, this.transform.position, Quaternion.identity);
+        EventoEnSala=true;
+    }
+    public bool GetEventoEnSala()
+    { 
+        return EventoEnSala; 
+    }
 
-    public enum TypeOfProblem
-    {
-        FIRE,
-        SHORTCIRCUIT,
-        GASLEAK
-    };
 
-    protected TypeOfProblem myTypeOfProblem;
-    // Update is called once per frame
 
-    public void modifyDificulty(int amount)
-    {
-        dificulty = amount;
-    }
-    public void setTypeOfProblem(int amount)
-    {
-        myTypeOfProblem = (TypeOfProblem)amount;
-    }
-    public int getDificulty(Salas sala)
-    {
-        return sala.dificulty;
-    }
-    public TypeOfProblem getTypeOfProblem()
-    {
-        return myTypeOfProblem;
-    }
 }
