@@ -35,13 +35,16 @@ public class ManageMinijuegos : MonoBehaviour
                 minijuegos.Add(minijuego);
             }
         }
-        DesactivarTodosLosMinijuegos();
     }
     void Update()
     {
+<<<<<<< HEAD
             IniciarMinijuego(2);
         
                                   
+=======
+        IniciarMinijuego(0);
+>>>>>>> parent of 57bbbec (Feature Gas Terminada)
     }
     public void IniciarMinijuego(int index)
     {
@@ -49,7 +52,6 @@ public class ManageMinijuegos : MonoBehaviour
         {
             if (!minijuegos[index].VerificarJuegoCompletado())
             {
-                minijuegos[index].gameObject.SetActive(true);
                 minijuegos[index].IniciarMinijuego();
             }
             else
@@ -62,14 +64,6 @@ public class ManageMinijuegos : MonoBehaviour
         {
             Debug.LogWarning("Índice fuera de rango.");
         }
-    }
-    public void DesactivarTodosLosMinijuegos()
-    {
-        foreach (var minijuego in minijuegos)
-        {
-            minijuego.gameObject.SetActive(false);
-        }
-        Debug.Log("Todos los mini-juegos han sido desactivados.");
     }
 
 

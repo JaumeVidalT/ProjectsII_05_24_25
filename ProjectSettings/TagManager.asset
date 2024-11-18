@@ -8,9 +8,12 @@ TagManager:
   - Oxigeno
   - Temperatura
   - Presion
+<<<<<<< HEAD
   - Destruible
   - Minijuego
   - Harmonica
+=======
+>>>>>>> parent of 57bbbec (Feature Gas Terminada)
   layers:
   - Default
   - TransparentFX
