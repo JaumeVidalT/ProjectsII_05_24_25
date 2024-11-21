@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class ManageSalas : MonoBehaviour
 {
+    public static ManageSalas Instance { get; private set; }
     private int tiempo;
     // Start is called before the first frame update
     public Transform[] rooms; 
     private List<Salas> salasList = new List<Salas>();
     private Salas salaActual;
+    private Salas salaNext;
     [SerializeField]
     private GameObject Player;
     private GameObject currentPlayerInstance;
     public GameObject nextSala;
+    private bool minijuegoActivo = false;
+    private void Awake()
+    {
+        // Asegura que solo haya una instancia
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject); //Assgura que persista entre escenes
+    }
     public void Start()
     {
         foreach (var room in rooms)
@@ -31,6 +46,7 @@ public class ManageSalas : MonoBehaviour
         salasList[0].salaDerecha = salasList[1];
         salasList[1].salaIzquierda = salasList[0];
         salaActual = salasList[0];
+
         PrintPlayer();
     }
     // Update is called once per frame
@@ -40,12 +56,20 @@ public class ManageSalas : MonoBehaviour
         PrintNextSala();
         if(Input.GetKeyUp(KeyCode.I))
         {
+            salaActual = salaNext;
             PrintPlayer();
         }
         
         if (Input.GetKeyDown(KeyCode.E))
         {
+            
             tiempo++;
+            if (salaActual.GetEventoEnSala())
+            {
+                ManageMinijuegos.Instance.StartMinijuego(salaActual);
+                minijuegoActivo = true;
+            }
+
         }
         if(tiempo>5)
         {
@@ -61,8 +85,15 @@ public class ManageSalas : MonoBehaviour
             }
             tiempo = 0;
         }
+        if (minijuegoActivo == true) 
+        {
+            ManageMinijuegos.Instance.StartMinijuego(salaActual);
+        }
         
+
     }
+    public Salas GetSalaActual() { return salaActual; }
+    public void SetMinijuegoActivo(bool seter) {  minijuegoActivo=seter; }
     public void MoverJugadorSalas()
     {
         Salas nuevaSala = null;
@@ -86,9 +117,10 @@ public class ManageSalas : MonoBehaviour
         }
         if(nuevaSala!=null)
         {
-            salaActual = nuevaSala;
+            salaNext = nuevaSala;
         }
     }
+    
     public void PrintPlayer()
     {
         if (currentPlayerInstance == null)
@@ -107,12 +139,12 @@ public class ManageSalas : MonoBehaviour
         if (nextSala == null)
         {
             // Si no existe un jugador en la escena, instáncialo
-            nextSala = Instantiate(nextSala, salaActual.transform.position, Quaternion.identity);
+            nextSala = Instantiate(nextSala, salaNext.transform.position, Quaternion.identity);
         }
         else
         {
             // Si el jugador ya existe, simplemente actualiza su posición
-            nextSala.transform.position = salaActual.transform.position;
+            nextSala.transform.position = salaNext.transform.position;
         }
     }
 

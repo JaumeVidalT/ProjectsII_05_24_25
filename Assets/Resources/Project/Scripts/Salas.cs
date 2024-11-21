@@ -13,6 +13,7 @@ public class Salas : MonoBehaviour
     public Salas salaIzquierda;
     public Salas salaDerecha;
     public string nombre;
+    private GameObject eventoSala;
     // Update is called once per fram
     public Salas(string nombre)
     {
@@ -21,12 +22,17 @@ public class Salas : MonoBehaviour
     public void UpdateSala()
     {
         EventoSala.ActualizarSala(this);
-        Instantiate(EventoSala, this.transform.position, Quaternion.identity);
+        eventoSala=Instantiate(EventoSala.gameObject, this.transform.position, Quaternion.identity);
         EventoEnSala=true;
     }
     public bool GetEventoEnSala()
     { 
         return EventoEnSala; 
+    }
+    public void DestroyEvento()
+    {
+        Destroy(eventoSala);
+        EventoEnSala = false;
     }
 
 

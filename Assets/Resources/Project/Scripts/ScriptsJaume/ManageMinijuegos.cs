@@ -37,12 +37,7 @@ public class ManageMinijuegos : MonoBehaviour
         }
         DesactivarTodosLosMinijuegos();
     }
-    void Update()
-    {
-            IniciarMinijuego(2);
-        
-                                  
-    }
+
     public void IniciarMinijuego(int index)
     {
         if (index >= 0 && index < minijuegos.Count)
@@ -56,6 +51,8 @@ public class ManageMinijuegos : MonoBehaviour
             {
                 minijuegos[index].gameObject.SetActive(false);
                 minijuegos[index].TerminarMinijuego();
+                ManageSalas.Instance.GetSalaActual().DestroyEvento();
+                ManageSalas.Instance.SetMinijuegoActivo(false);
             }
         }
         else
@@ -70,6 +67,21 @@ public class ManageMinijuegos : MonoBehaviour
             minijuego.gameObject.SetActive(false);
         }
         Debug.Log("Todos los mini-juegos han sido desactivados.");
+    }
+    public void StartMinijuego(Salas salaActual)
+    {
+        switch (salaActual.EventoSala.getTypeOfProblem())
+        {
+            case Evento.TypeOfProblem.FIRE:
+                ManageMinijuegos.Instance.IniciarMinijuego(0);
+                break;
+            case Evento.TypeOfProblem.SHORTCIRCUIT:
+                ManageMinijuegos.Instance.IniciarMinijuego(1);
+                break;
+            case Evento.TypeOfProblem.GASLEAK:
+                ManageMinijuegos.Instance.IniciarMinijuego(2);
+                break;
+        }
     }
 
 
