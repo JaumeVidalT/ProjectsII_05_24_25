@@ -17,6 +17,7 @@ public class ManageSalas : MonoBehaviour
     private GameObject currentPlayerInstance;
     public GameObject nextSala;
     private bool minijuegoActivo = false;
+    private Salas nuevaSala = null;
     private void Awake()
     {
         // Asegura que solo haya una instancia
@@ -92,7 +93,7 @@ public class ManageSalas : MonoBehaviour
     {
         if (currentPlayerInstance == null)
         {
-            // Si no existe un jugador en la escena, instáncialo
+            // Si no existe un jugador en la escena, instï¿½ncialo
             currentPlayerInstance = Instantiate(Player, salaActual.transform.position, Quaternion.identity);
         }
 
