@@ -15,7 +15,7 @@ public class CambiadorDeEscenas : MonoBehaviour
 
     public void Jugar() {
 
-        SceneManager.LoadScene("WalterSceneBackup", LoadSceneMode.Single);
+        SceneManager.LoadScene("ScenaNave", LoadSceneMode.Single);
     }
 
     public void VerDerrota() {

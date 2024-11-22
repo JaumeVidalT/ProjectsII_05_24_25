@@ -8,9 +8,10 @@ public class Evento : MonoBehaviour
     {
         FIRE,
         SHORTCIRCUIT,
-        GASLEAK
+        GASLEAK,
+        NADA
     };
-    protected TypeOfProblem myTypeOfProblem;
+    protected TypeOfProblem myTypeOfProblem=TypeOfProblem.NADA;
     protected int dificulty;
 
     public void ActualizarSala()  // Cambié el nombre del método
