@@ -33,6 +33,7 @@ public class Harmonico : Minijuego
     }
     public override void TerminarMinijuego()
     {
-
+        ContadorVeces=0f;
+        imagenBarra.fillAmount = 0f;    
     }
 }

@@ -11,10 +11,12 @@ public class ActualizadorDeMedidores : MonoBehaviour
     public Image barraOxigeno;
     public Image barraTemperatura;
     public Image barraPresion;
+    
 
     public float bO = 1.0f;
     public float bT = 1.0f;
     public float bP = 1.0f;
+    private float restarMedidores = 0.1f;
 
     private void Awake() {
         
@@ -22,13 +24,25 @@ public class ActualizadorDeMedidores : MonoBehaviour
 
     }
 
-    public void Actualizar() {
+    public void Actualizar() 
+    {
+        for(int i = 0; i < ManageSalas.Instance.ContarProblemasElectricidad(); i++)
+        {
+            barraTemperatura.fillAmount -= restarMedidores;
+        }
+        for (int i = 0; i < ManageSalas.Instance.ContarProblemasFuego(); i++)
+        {
+            barraOxigeno.fillAmount -= restarMedidores;
+        }
+        for (int i = 0; i < ManageSalas.Instance.ContarProblemasGas(); i++)
+        {
+            barraPresion.fillAmount -= restarMedidores;
+        }
 
-        barraOxigeno.fillAmount = bO;
-        barraTemperatura.fillAmount = bT;
-        barraPresion.fillAmount = bP;
+
 
     }
+
 
 
 }

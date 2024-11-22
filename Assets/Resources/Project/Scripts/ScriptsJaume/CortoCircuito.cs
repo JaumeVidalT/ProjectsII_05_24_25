@@ -64,6 +64,9 @@ public class CortoCircuito : Minijuego
     }
     public override void TerminarMinijuego()
     {
-        Cortocircuito.SetActive(false);
+        for (int i = 0; i < cables; i++)
+        {
+            Cables[i].SetActive(true);
+        }
     }
 }

@@ -10,6 +10,7 @@ public class Salas : MonoBehaviour
     private bool EventoEnSala=false;
     public string nombre;
     private GameObject eventoSala;
+    public Evento eventoInstanciado;
     // Update is called once per fram
     public Salas(string nombre)
     {
@@ -17,9 +18,11 @@ public class Salas : MonoBehaviour
     }
     public void UpdateSala()
     {
-        EventoSala.ActualizarSala(this);
+        
         eventoSala=Instantiate(EventoSala.gameObject, this.transform.position, Quaternion.identity);
-        EventoEnSala=true;
+        eventoInstanciado = eventoSala.GetComponent<Evento>();
+        eventoInstanciado.ActualizarSala();
+        EventoEnSala =true;
     }
     public bool GetEventoEnSala()
     { 

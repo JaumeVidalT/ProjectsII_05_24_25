@@ -70,16 +70,17 @@ public class ManageMinijuegos : MonoBehaviour
     }
     public void StartMinijuego(Salas salaActual)
     {
-        switch (salaActual.EventoSala.getTypeOfProblem())
+        Debug.Log($"Tipo de problema detectado: {salaActual.eventoInstanciado.getTypeOfProblem()}");
+        switch (salaActual.eventoInstanciado.getTypeOfProblem())
         {
             case Evento.TypeOfProblem.FIRE:
                 ManageMinijuegos.Instance.IniciarMinijuego(0);
                 break;
             case Evento.TypeOfProblem.SHORTCIRCUIT:
-                ManageMinijuegos.Instance.IniciarMinijuego(1);
+                ManageMinijuegos.Instance.IniciarMinijuego(2);
                 break;
             case Evento.TypeOfProblem.GASLEAK:
-                ManageMinijuegos.Instance.IniciarMinijuego(2);
+                ManageMinijuegos.Instance.IniciarMinijuego(1);
                 break;
         }
     }

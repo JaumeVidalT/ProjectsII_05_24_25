@@ -13,7 +13,7 @@ public class Evento : MonoBehaviour
     protected TypeOfProblem myTypeOfProblem;
     protected int dificulty;
 
-    public void ActualizarSala(Salas sala)  // Cambié el nombre del método
+    public void ActualizarSala()  // Cambié el nombre del método
     {
         setTypeOfProblem(Random.Range(0, 3));
         // Pasamos el valor de dificultad correcto
