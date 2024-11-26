@@ -53,6 +53,7 @@ public class ManageMinijuegos : MonoBehaviour
                 minijuegos[index].TerminarMinijuego();
                 ManageSalas.Instance.GetSalaActual().DestroyEvento();
                 ManageSalas.Instance.SetMinijuegoActivo(false);
+                GameObject.Find("white").GetComponent<CharacterMovement>().enabled = true;
             }
         }
         else

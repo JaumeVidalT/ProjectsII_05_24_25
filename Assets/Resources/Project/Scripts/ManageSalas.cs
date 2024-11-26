@@ -52,6 +52,7 @@ public class ManageSalas : MonoBehaviour
            
             if (salaActual.GetEventoEnSala())
             {
+                GameObject.Find("white").GetComponent<CharacterMovement>().enabled=false;
                 ManageMinijuegos.Instance.StartMinijuego(salaActual);
                 minijuegoActivo = true;
             }
