@@ -33,6 +33,12 @@ public class Salas : MonoBehaviour
         Destroy(eventoSala);
         EventoEnSala = false;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("SalaCambiada");
+        ManageSalas.Instance.SetSalaActual(this);
+    }
+
 
 
 
