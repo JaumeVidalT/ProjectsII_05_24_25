@@ -11,6 +11,7 @@ public class CortoCircuito : Minijuego
     private bool cableFalsoAsignado = false;
     public override void IniciarMinijuego()
     {
+            transform.position=ManageSalas.Instance.GetSalaActual().transform.position;
             if (!cableFalsoAsignado)
             {
                 CablesBuenos = new bool[cables]; // Asegúrate de inicializar el arreglo aquí.
