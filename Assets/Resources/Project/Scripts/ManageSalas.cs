@@ -43,8 +43,6 @@ public class ManageSalas : MonoBehaviour
                 Debug.LogWarning("Sala en salasList es null!");
             }
         }
-        salasList[0].salaDerecha = salasList[1];
-        salasList[1].salaIzquierda = salasList[0];
         salaActual = salasList[0];
 
         PrintPlayer();
@@ -52,13 +50,7 @@ public class ManageSalas : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        MoverJugadorSalas();
-        PrintNextSala();
-        if(Input.GetKeyUp(KeyCode.I))
-        {
-            salaActual = salaNext;
-            PrintPlayer();
-        }
+
         
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -94,32 +86,7 @@ public class ManageSalas : MonoBehaviour
     }
     public Salas GetSalaActual() { return salaActual; }
     public void SetMinijuegoActivo(bool seter) {  minijuegoActivo=seter; }
-    public void MoverJugadorSalas()
-    {
-        Salas nuevaSala = null;
-        switch (Input.inputString.ToLower()) // Convertir a minúscula para evitar problemas de mayúsculas
-        {            
-            case "w":
-                nuevaSala = salaActual.salaArriba;
-                break;
-            case "s":
-                nuevaSala = salaActual.salaAbajo;
-                break;
-            case "a":
-                nuevaSala = salaActual.salaIzquierda;
-                break;
-            case "d":
-                nuevaSala = salaActual.salaDerecha;
-                break;
-            default:
-                // No se hace nada si no se presiona W, A, S o D
-                break;
-        }
-        if(nuevaSala!=null)
-        {
-            salaNext = nuevaSala;
-        }
-    }
+
     
     public void PrintPlayer()
     {
@@ -128,25 +95,9 @@ public class ManageSalas : MonoBehaviour
             // Si no existe un jugador en la escena, instáncialo
             currentPlayerInstance = Instantiate(Player, salaActual.transform.position, Quaternion.identity);
         }
-        else
-        {
-            // Si el jugador ya existe, simplemente actualiza su posición
-            currentPlayerInstance.transform.position = salaActual.transform.position;
-        }
+
     }
-    public void PrintNextSala()
-    {
-        if (nextSala == null)
-        {
-            // Si no existe un jugador en la escena, instáncialo
-            nextSala = Instantiate(nextSala, salaNext.transform.position, Quaternion.identity);
-        }
-        else
-        {
-            // Si el jugador ya existe, simplemente actualiza su posición
-            nextSala.transform.position = salaNext.transform.position;
-        }
-    }
+
 
 
 

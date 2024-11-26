@@ -8,10 +8,6 @@ public class Salas : MonoBehaviour
     public Evento EventoSala;
     protected bool enSala;
     private bool EventoEnSala=false;
-    public Salas salaArriba;
-    public Salas salaAbajo;
-    public Salas salaIzquierda;
-    public Salas salaDerecha;
     public string nombre;
     private GameObject eventoSala;
     // Update is called once per fram
