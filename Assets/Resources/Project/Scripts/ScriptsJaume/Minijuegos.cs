@@ -12,7 +12,6 @@ public class Minijuego : MonoBehaviour
     public virtual bool VerificarJuegoCompletado()
     {
         return true;
-        Debug.Log("Minijuego terminado.");
     }
     public virtual void TerminarMinijuego()
     {

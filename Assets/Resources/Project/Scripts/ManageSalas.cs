@@ -1,8 +1,6 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
-
 public class ManageSalas : MonoBehaviour
 {
     public static ManageSalas Instance { get; private set; }
@@ -13,10 +11,8 @@ public class ManageSalas : MonoBehaviour
     private Salas salaActual;
     private Salas salaNext;
     [SerializeField]
-    private GameObject Player;
-    private GameObject currentPlayerInstance;
-    public GameObject nextSala;
     private bool minijuegoActivo = false;
+    private Salas nuevaSala = null;
     private void Awake()
     {
         // Asegura que solo haya una instancia
@@ -44,8 +40,7 @@ public class ManageSalas : MonoBehaviour
             }
         }
         salaActual = salasList[0];
-
-        PrintPlayer();
+        CreateProblems();
     }
     // Update is called once per frame
     public void Update()
@@ -54,29 +49,16 @@ public class ManageSalas : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E))
         {
-            
-            tiempo++;
+           
             if (salaActual.GetEventoEnSala())
             {
+                GameObject.Find("white").GetComponent<CharacterMovement>().enabled=false;
                 ManageMinijuegos.Instance.StartMinijuego(salaActual);
                 minijuegoActivo = true;
             }
 
         }
-        if(tiempo>5)
-        {
-            foreach (Salas sala in salasList)
-            {
-                if (Random.Range(0, 100) > 30&& !sala.GetEventoEnSala())
-                {
-                    Evento evento = sala.GetComponent<Evento>();
-                    sala.UpdateSala();                  
-                    
-                }
 
-            }
-            tiempo = 0;
-        }
         if (minijuegoActivo == true) 
         {
             ManageMinijuegos.Instance.StartMinijuego(salaActual);
@@ -84,21 +66,65 @@ public class ManageSalas : MonoBehaviour
         
 
     }
+    public void CreateProblems()
+    {
+        foreach (Salas sala in salasList)
+        {
+            if (Random.Range(0, 100) > 30 && !sala.GetEventoEnSala())
+            {
+                Evento evento = sala.GetComponent<Evento>();
+                sala.UpdateSala();
+
+            }
+
+        }
+    }
     public Salas GetSalaActual() { return salaActual; }
     public void SetMinijuegoActivo(bool seter) {  minijuegoActivo=seter; }
-
-    
-    public void PrintPlayer()
+    public void SetSalaActual(Salas NextSala)
     {
-        if (currentPlayerInstance == null)
-        {
-            // Si no existe un jugador en la escena, instáncialo
-            currentPlayerInstance = Instantiate(Player, salaActual.transform.position, Quaternion.identity);
-        }
-
+        salaActual = NextSala;
     }
 
+    public int ContarProblemasFuego()
+    {
+        int contadorDeProblemas=0;
+        foreach (Salas sala in salasList)
+        {
+           if(sala.GetEventoEnSala()&&sala.eventoInstanciado.getTypeOfProblem()==Evento.TypeOfProblem.FIRE)
+            {
+                contadorDeProblemas++;
+            }
+        }
+        return contadorDeProblemas;
 
+    }
+    public int ContarProblemasGas()
+    {
+        int contadorDeProblemas = 0;
+        foreach (Salas sala in salasList)
+        {
+            if (sala.GetEventoEnSala() && sala.eventoInstanciado.getTypeOfProblem() == Evento.TypeOfProblem.GASLEAK)
+            {
+                contadorDeProblemas++;
+            }
+        }
+        return contadorDeProblemas;
+
+    }
+    public int ContarProblemasElectricidad()
+    {
+        int contadorDeProblemas = 0;
+        foreach (Salas sala in salasList)
+        {
+            if (sala.GetEventoEnSala() && sala.eventoInstanciado.getTypeOfProblem() == Evento.TypeOfProblem.SHORTCIRCUIT)
+            {
+                contadorDeProblemas++;
+            }
+        }
+        return contadorDeProblemas;
+
+    }
 
 
 }
