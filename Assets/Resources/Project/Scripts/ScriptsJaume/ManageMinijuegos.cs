@@ -78,10 +78,10 @@ public class ManageMinijuegos : MonoBehaviour
                 ManageMinijuegos.Instance.IniciarMinijuego(0);
                 break;
             case Evento.TypeOfProblem.SHORTCIRCUIT:
-                ManageMinijuegos.Instance.IniciarMinijuego(2);
+                ManageMinijuegos.Instance.IniciarMinijuego(1);
                 break;
             case Evento.TypeOfProblem.GASLEAK:
-                ManageMinijuegos.Instance.IniciarMinijuego(1);
+                ManageMinijuegos.Instance.IniciarMinijuego(2);
                 break;
         }
     }

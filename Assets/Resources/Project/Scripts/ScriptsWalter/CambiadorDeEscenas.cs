@@ -8,29 +8,12 @@ public class CambiadorDeEscenas : MonoBehaviour
     // Start is called before the first frame update
     public static CambiadorDeEscenas instance;
 
-    private void Start()
+    public void Jugar()
     {
-        instance = this;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-
-    public void Jugar() {
-
-        SceneManager.LoadScene("ScenaNave", LoadSceneMode.Single);
-    }
-
-    public void VerDerrota() {
-        SceneManager.LoadScene("EscenaDerrota", LoadSceneMode.Single);
-    }
-
-    public void VerVictoria() {
-        SceneManager.LoadScene("EscenaVictoria", LoadSceneMode.Single);
-    }
-
-    public void VerMenu() {
-        SceneManager.LoadScene("EscenaMenu", LoadSceneMode.Single);
-    }
-
-    public void Salir() { 
+    public void Salir()
+    {
         Application.Quit();
     }
 }
