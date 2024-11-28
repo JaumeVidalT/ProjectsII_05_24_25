@@ -37,12 +37,7 @@ public class ManageMinijuegos : MonoBehaviour
         }
         DesactivarTodosLosMinijuegos();
     }
-    void Update()
-    {
-            IniciarMinijuego(2);
-        
-                                  
-    }
+
     public void IniciarMinijuego(int index)
     {
         if (index >= 0 && index < minijuegos.Count)
