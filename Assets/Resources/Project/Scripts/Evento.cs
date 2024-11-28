@@ -8,12 +8,13 @@ public class Evento : MonoBehaviour
     {
         FIRE,
         SHORTCIRCUIT,
-        GASLEAK
+        GASLEAK,
+        NADA
     };
-    protected TypeOfProblem myTypeOfProblem;
+    protected TypeOfProblem myTypeOfProblem=TypeOfProblem.NADA;
     protected int dificulty;
 
-    public void ActualizarSala(Salas sala)  // Cambié el nombre del método
+    public void ActualizarSala()  // Cambié el nombre del método
     {
         setTypeOfProblem(Random.Range(0, 3));
         // Pasamos el valor de dificultad correcto

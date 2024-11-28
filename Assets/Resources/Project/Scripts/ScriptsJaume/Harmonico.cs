@@ -17,7 +17,6 @@ public class Harmonico : Minijuego
         }
         if (Harmonica.fillAmount <= 0.21f && Harmonica.fillAmount >= 0.19f && VerificarSubir)
         {
-            Debug.Log("hola");
             ContadorVeces += 0.05f;
             imagenBarra.fillAmount += 0.05f;
             VerificarSubir = false;
@@ -34,6 +33,7 @@ public class Harmonico : Minijuego
     }
     public override void TerminarMinijuego()
     {
-
+        ContadorVeces=0f;
+        imagenBarra.fillAmount = 0f;    
     }
 }

@@ -1,18 +1,29 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
-
 public class ManageSalas : MonoBehaviour
 {
+    public static ManageSalas Instance { get; private set; }
     private int tiempo;
     // Start is called before the first frame update
     public Transform[] rooms; 
     private List<Salas> salasList = new List<Salas>();
     private Salas salaActual;
+    private Salas salaNext;
     [SerializeField]
-    private GameObject Player;
-    private GameObject currentPlayerInstance;
-    public GameObject nextSala;
+    private bool minijuegoActivo = false;
+    private Salas nuevaSala = null;
+    private void Awake()
+    {
+        // Asegura que solo haya una instancia
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject); //Assgura que persista entre escenes
+    }
     public void Start()
     {
         foreach (var room in rooms)
@@ -28,94 +39,92 @@ public class ManageSalas : MonoBehaviour
                 Debug.LogWarning("Sala en salasList es null!");
             }
         }
-        salasList[0].salaDerecha = salasList[1];
-        salasList[1].salaIzquierda = salasList[0];
         salaActual = salasList[0];
-        PrintPlayer();
+        CreateProblems();
     }
     // Update is called once per frame
     public void Update()
     {
-        MoverJugadorSalas();
-        PrintNextSala();
-        if(Input.GetKeyUp(KeyCode.I))
-        {
-            PrintPlayer();
-        }
+
         
         if (Input.GetKeyDown(KeyCode.E))
         {
-            tiempo++;
-        }
-        if(tiempo>5)
-        {
-            foreach (Salas sala in salasList)
+           
+            if (salaActual.GetEventoEnSala())
             {
-                if (Random.Range(0, 100) > 30&& !sala.GetEventoEnSala())
-                {
-                    Evento evento = sala.GetComponent<Evento>();
-                    sala.UpdateSala();                  
-                    
-                }
-
+                GameObject.Find("white").GetComponent<CharacterMovement>().enabled=false;
+                ManageMinijuegos.Instance.StartMinijuego(salaActual);
+                minijuegoActivo = true;
             }
-            tiempo = 0;
+
+        }
+
+        if (minijuegoActivo == true) 
+        {
+            ManageMinijuegos.Instance.StartMinijuego(salaActual);
         }
         
+
     }
-    public void MoverJugadorSalas()
+    public void CreateProblems()
     {
-        Salas nuevaSala = null;
-        switch (Input.inputString.ToLower()) // Convertir a minúscula para evitar problemas de mayúsculas
-        {            
-            case "w":
-                nuevaSala = salaActual.salaArriba;
-                break;
-            case "s":
-                nuevaSala = salaActual.salaAbajo;
-                break;
-            case "a":
-                nuevaSala = salaActual.salaIzquierda;
-                break;
-            case "d":
-                nuevaSala = salaActual.salaDerecha;
-                break;
-            default:
-                // No se hace nada si no se presiona W, A, S o D
-                break;
-        }
-        if(nuevaSala!=null)
+        foreach (Salas sala in salasList)
         {
-            salaActual = nuevaSala;
+            if (Random.Range(0, 100) > 30 && !sala.GetEventoEnSala())
+            {
+                Evento evento = sala.GetComponent<Evento>();
+                sala.UpdateSala();
+
+            }
+
         }
     }
-    public void PrintPlayer()
+    public Salas GetSalaActual() { return salaActual; }
+    public void SetMinijuegoActivo(bool seter) {  minijuegoActivo=seter; }
+    public void SetSalaActual(Salas NextSala)
     {
-        if (currentPlayerInstance == null)
-        {
-            // Si no existe un jugador en la escena, instáncialo
-            currentPlayerInstance = Instantiate(Player, salaActual.transform.position, Quaternion.identity);
-        }
-        else
-        {
-            // Si el jugador ya existe, simplemente actualiza su posición
-            currentPlayerInstance.transform.position = salaActual.transform.position;
-        }
-    }
-    public void PrintNextSala()
-    {
-        if (nextSala == null)
-        {
-            // Si no existe un jugador en la escena, instáncialo
-            nextSala = Instantiate(nextSala, salaActual.transform.position, Quaternion.identity);
-        }
-        else
-        {
-            // Si el jugador ya existe, simplemente actualiza su posición
-            nextSala.transform.position = salaActual.transform.position;
-        }
+        salaActual = NextSala;
     }
 
+    public int ContarProblemasFuego()
+    {
+        int contadorDeProblemas=0;
+        foreach (Salas sala in salasList)
+        {
+           if(sala.GetEventoEnSala()&&sala.eventoInstanciado.getTypeOfProblem()==Evento.TypeOfProblem.FIRE)
+            {
+                contadorDeProblemas++;
+            }
+        }
+        return contadorDeProblemas;
+
+    }
+    public int ContarProblemasGas()
+    {
+        int contadorDeProblemas = 0;
+        foreach (Salas sala in salasList)
+        {
+            if (sala.GetEventoEnSala() && sala.eventoInstanciado.getTypeOfProblem() == Evento.TypeOfProblem.GASLEAK)
+            {
+                contadorDeProblemas++;
+            }
+        }
+        return contadorDeProblemas;
+
+    }
+    public int ContarProblemasElectricidad()
+    {
+        int contadorDeProblemas = 0;
+        foreach (Salas sala in salasList)
+        {
+            if (sala.GetEventoEnSala() && sala.eventoInstanciado.getTypeOfProblem() == Evento.TypeOfProblem.SHORTCIRCUIT)
+            {
+                contadorDeProblemas++;
+            }
+        }
+        return contadorDeProblemas;
+
+    }
 
 
 }

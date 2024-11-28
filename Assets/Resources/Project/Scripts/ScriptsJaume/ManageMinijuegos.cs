@@ -51,6 +51,9 @@ public class ManageMinijuegos : MonoBehaviour
             {
                 minijuegos[index].gameObject.SetActive(false);
                 minijuegos[index].TerminarMinijuego();
+                ManageSalas.Instance.GetSalaActual().DestroyEvento();
+                ManageSalas.Instance.SetMinijuegoActivo(false);
+                GameObject.Find("white").GetComponent<CharacterMovement>().enabled = true;
             }
         }
         else
@@ -65,6 +68,22 @@ public class ManageMinijuegos : MonoBehaviour
             minijuego.gameObject.SetActive(false);
         }
         Debug.Log("Todos los mini-juegos han sido desactivados.");
+    }
+    public void StartMinijuego(Salas salaActual)
+    {
+        Debug.Log($"Tipo de problema detectado: {salaActual.eventoInstanciado.getTypeOfProblem()}");
+        switch (salaActual.eventoInstanciado.getTypeOfProblem())
+        {
+            case Evento.TypeOfProblem.FIRE:
+                ManageMinijuegos.Instance.IniciarMinijuego(0);
+                break;
+            case Evento.TypeOfProblem.SHORTCIRCUIT:
+                ManageMinijuegos.Instance.IniciarMinijuego(1);
+                break;
+            case Evento.TypeOfProblem.GASLEAK:
+                ManageMinijuegos.Instance.IniciarMinijuego(2);
+                break;
+        }
     }
 
 
