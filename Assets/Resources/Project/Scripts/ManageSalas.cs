@@ -40,7 +40,7 @@ public class ManageSalas : MonoBehaviour
             }
         }
         salaActual = salasList[0];
-        SetSalasReset();
+        /*SetSalasReset();*/
         CreateProblems();
     }
     // Update is called once per frame
@@ -57,10 +57,10 @@ public class ManageSalas : MonoBehaviour
                 ManageMinijuegos.Instance.StartMinijuego(salaActual);
                 minijuegoActivo = true;
             }
-            else if(salaActual.GetypeOfSala()!=Salas.typeOfSala.NONE)
+            /*else if(salaActual.GetypeOfSala()!=Salas.typeOfSala.NONE)
             {
                 ManageMinijuegos.Instance.IniciarMinijuego(4);
-            }
+            }*/
             
 
         }
