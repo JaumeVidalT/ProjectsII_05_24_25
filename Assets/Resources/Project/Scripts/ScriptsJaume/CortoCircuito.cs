@@ -39,6 +39,7 @@ public class CortoCircuito : Minijuego
     }
     public void printBadCable()
     {
+        Vector2 positionRayo;
         for(int i=0; i<cables;i++)
         {
             if (CablesBuenos[i]==false)
@@ -46,13 +47,22 @@ public class CortoCircuito : Minijuego
                 switch(i)
                 {
                     case 0:
-                        Cortocircuito.transform.position = Cables[5].transform.position;
+                        positionRayo = Cables[5].transform.position;
+                        positionRayo.y += 1.5f;
+                        positionRayo.x -= 1;
+                        Cortocircuito.transform.position = positionRayo;
                         break;
                     case 1:
-                        Cortocircuito.transform.position = Cables[3].transform.position;
+                        positionRayo= Cables[3].transform.position;
+                        positionRayo.y += 1.5f;
+                        positionRayo.x -= 1;
+                        Cortocircuito.transform.position = positionRayo;
                         break;
                     case 2:
-                        Cortocircuito.transform.position = Cables[4].transform.position;
+                        positionRayo = Cables[4].transform.position;
+                        positionRayo.y += 1.5f;
+                        positionRayo.x -= 1;
+                        Cortocircuito.transform.position = positionRayo;
                         break;
                 }
                

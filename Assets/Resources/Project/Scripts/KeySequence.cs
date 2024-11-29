@@ -29,7 +29,9 @@ public class KeySequence : Minijuego
 
     public override void IniciarMinijuego()
     {
-        Vector2 startPosition = new Vector2(-5, 0);
+        Vector2 startPosition = ManageSalas.Instance.GetSalaActual().transform.position;
+        startPosition.x -= 5;
+        transform.position = ManageSalas.Instance.GetSalaActual().transform.position;
 
 
         if (!flechasCargadas)
