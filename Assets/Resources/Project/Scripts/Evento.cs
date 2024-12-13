@@ -59,4 +59,13 @@ public class Evento : MonoBehaviour
     {
         dificulty = amount;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Ha entrado");
+        ManageSalas.Instance.setOnObject(true);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        ManageSalas.Instance.setOnObject(false);
+    }
 }
