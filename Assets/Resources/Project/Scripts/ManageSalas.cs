@@ -10,10 +10,10 @@ public class ManageSalas : MonoBehaviour
     private List<Salas> salasList = new List<Salas>();
     private Salas salaActual;
     private Salas salaNext;
-    [SerializeField]
     private bool minijuegoActivo = false;
     private Salas nuevaSala = null;
     private bool OnObject=false;
+    public Canvas canvas;
 
 
     private void Awake()
@@ -56,6 +56,7 @@ public class ManageSalas : MonoBehaviour
            
             if (salaActual.GetEventoEnSala())
             {
+                canvas.gameObject.SetActive(false);
                 GameObject.Find("Player").GetComponent<CharacterMovement>().enabled=false;
                 ManageMinijuegos.Instance.StartMinijuego(salaActual);
                 minijuegoActivo = true;
@@ -66,6 +67,10 @@ public class ManageSalas : MonoBehaviour
         if (minijuegoActivo == true) 
         {
             ManageMinijuegos.Instance.StartMinijuego(salaActual);
+        }
+        else
+        {
+            canvas.gameObject.SetActive(true);
         }
         
 
