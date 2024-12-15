@@ -11,7 +11,7 @@ public class Evento : MonoBehaviour
         GASLEAK,
         NADA
     };
-    protected TypeOfProblem myTypeOfProblem=TypeOfProblem.NADA;
+    public TypeOfProblem myTypeOfProblem=TypeOfProblem.NADA;
     protected int dificulty;
     
     public void ActualizarSala()  // Cambié el nombre del método

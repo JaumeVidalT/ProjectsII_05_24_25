@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 public class ManageSalas : MonoBehaviour
 {
@@ -32,7 +33,6 @@ public class ManageSalas : MonoBehaviour
             if (sala != null)
             {
                 salasList.Add(sala);
-                Debug.Log("Agregada sala: ");
             }
             else
             {
@@ -40,7 +40,7 @@ public class ManageSalas : MonoBehaviour
             }
         }
         salaActual = salasList[0];
-        /*SetSalasReset();*/
+        SetSalasReset();
         CreateProblems();
     }
     // Update is called once per frame
@@ -57,12 +57,14 @@ public class ManageSalas : MonoBehaviour
                 ManageMinijuegos.Instance.StartMinijuego(salaActual);
                 minijuegoActivo = true;
             }
-            /*else if(salaActual.GetypeOfSala()!=Salas.typeOfSala.NONE)
+            else if(salaActual.GetypeOfSala()!=Salas.typeOfSala.NONE)
             {
-                ManageMinijuegos.Instance.IniciarMinijuego(4);
-            }*/
+                GameObject.Find("Player").GetComponent<CharacterMovement>().enabled = false;
+                ManageMinijuegos.Instance.StartMinijuego(salaActual);
+                minijuegoActivo = true;
+            }
             
-
+           
         }
 
         if (minijuegoActivo == true) 

@@ -54,6 +54,7 @@ public class ManageMinijuegos : MonoBehaviour
                 ManageSalas.Instance.GetSalaActual().DestroyEvento();
                 ManageSalas.Instance.SetMinijuegoActivo(false);
                 GameObject.Find("Player").GetComponent<CharacterMovement>().enabled = true;
+                
             }
         }
         else
@@ -71,18 +72,25 @@ public class ManageMinijuegos : MonoBehaviour
     }
     public void StartMinijuego(Salas salaActual)
     {
-        Debug.Log($"Tipo de problema detectado: {salaActual.eventoInstanciado.getTypeOfProblem()}");
-        switch (salaActual.eventoInstanciado.getTypeOfProblem())
+        if(salaActual.eventoInstanciado != null)
         {
-            case Evento.TypeOfProblem.FIRE:
-                ManageMinijuegos.Instance.IniciarMinijuego(0);
-                break;
-            case Evento.TypeOfProblem.SHORTCIRCUIT:
-                ManageMinijuegos.Instance.IniciarMinijuego(1);
-                break;
-            case Evento.TypeOfProblem.GASLEAK:
-                ManageMinijuegos.Instance.IniciarMinijuego(2);
-                break;
+            switch (salaActual.eventoInstanciado.getTypeOfProblem())
+            {
+                case Evento.TypeOfProblem.FIRE:
+                    ManageMinijuegos.Instance.IniciarMinijuego(0);
+                    break;
+                case Evento.TypeOfProblem.SHORTCIRCUIT:
+                    ManageMinijuegos.Instance.IniciarMinijuego(1);
+                    break;
+                case Evento.TypeOfProblem.GASLEAK:
+                    ManageMinijuegos.Instance.IniciarMinijuego(2);
+                    break;
+            }
+        }
+        
+        if(salaActual.GetterEventoSala().getTypeOfProblem()==Evento.TypeOfProblem.NADA&& salaActual.GetypeOfSala() != Salas.typeOfSala.NONE)
+        {
+            ManageMinijuegos.Instance.IniciarMinijuego(0);
         }
     }
 
