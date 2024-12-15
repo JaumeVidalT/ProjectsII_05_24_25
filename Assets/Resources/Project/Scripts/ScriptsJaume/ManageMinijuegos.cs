@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class ManageMinijuegos : MonoBehaviour
 {
     public static ManageMinijuegos Instance { get; private set; }
@@ -62,6 +61,8 @@ public class ManageMinijuegos : MonoBehaviour
             Debug.LogWarning("Índice fuera de rango.");
         }
     }
+  
+
     public void DesactivarTodosLosMinijuegos()
     {
         foreach (var minijuego in minijuegos)

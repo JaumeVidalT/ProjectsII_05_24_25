@@ -11,9 +11,12 @@ public class ManageSalas : MonoBehaviour
     private List<Salas> salasList = new List<Salas>();
     private Salas salaActual;
     private Salas salaNext;
-    [SerializeField]
     private bool minijuegoActivo = false;
     private Salas nuevaSala = null;
+    private bool OnObject=false;
+    public Canvas canvas;
+
+
     private void Awake()
     {
         // Asegura que solo haya una instancia
@@ -48,11 +51,12 @@ public class ManageSalas : MonoBehaviour
     {
 
         
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)&&OnObject==true)
         {
            
             if (salaActual.GetEventoEnSala())
             {
+                canvas.gameObject.SetActive(false);
                 GameObject.Find("Player").GetComponent<CharacterMovement>().enabled=false;
                 ManageMinijuegos.Instance.StartMinijuego(salaActual);
                 minijuegoActivo = true;
@@ -71,8 +75,16 @@ public class ManageSalas : MonoBehaviour
         {
             ManageMinijuegos.Instance.StartMinijuego(salaActual);
         }
+        else
+        {
+            canvas.gameObject.SetActive(true);
+        }
         
 
+    }
+    public void setOnObject(bool _OnObject)
+    {
+        OnObject= _OnObject;
     }
     public void CreateProblems()
     {
