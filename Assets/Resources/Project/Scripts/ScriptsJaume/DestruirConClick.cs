@@ -22,25 +22,25 @@ public class DestruirConClick : MonoBehaviour
 
         if (Input.GetMouseButton(0)) // Botón izquierdo
         {
+
+
             // Lanza un rayo desde la cámara hacia el punto del clic
             Vector2 posicionMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(posicionMouse, Vector2.zero);
-            PointerEventData pointerData = new PointerEventData(eventSystem)
-            {
-                position = Input.mousePosition
+            Collider2D[] colliders = Physics2D.OverlapPointAll(posicionMouse);
 
-            };
-            List<RaycastResult> results = new List<RaycastResult>();
-            raycaster.Raycast(pointerData, results);
-            if (hit.collider != null)
+
+            foreach (Collider2D collider in colliders)
             {
                 // Verifica si el objeto tiene el tag correcto
-                if (hit.collider.CompareTag(tagDestruible))
+                if (collider.CompareTag(tagDestruible))
                 {
-                    hit.collider.gameObject.SetActive(false);
+                    collider.gameObject.SetActive(false);
                 }
                 
             }
+            PointerEventData pointerData=new PointerEventData(eventSystem);
+            List<RaycastResult> results = new List<RaycastResult>();
+            raycaster.Raycast(pointerData, results);
             foreach (RaycastResult result in results)
             {
                 if (result.gameObject.CompareTag(tagHarmonica))

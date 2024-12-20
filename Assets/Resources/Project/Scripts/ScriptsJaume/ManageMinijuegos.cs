@@ -6,6 +6,7 @@ public class ManageMinijuegos : MonoBehaviour
     public static ManageMinijuegos Instance { get; private set; }
 
     public List<Minijuego> minijuegos;
+    public Canvas Ui;
 
     private void Awake()
     {
@@ -45,10 +46,12 @@ public class ManageMinijuegos : MonoBehaviour
             if (!minijuegos[index].VerificarJuegoCompletado())
             {
                 minijuegos[index].gameObject.SetActive(true);
+                Ui.gameObject.SetActive(false);
                 minijuegos[index].IniciarMinijuego();
             }
             else
             {
+                Ui.gameObject.SetActive(true);
                 minijuegos[index].gameObject.SetActive(false);
                 minijuegos[index].TerminarMinijuego();
                 ManageSalas.Instance.GetSalaActual().DestroyEvento();

@@ -9,9 +9,10 @@ public class CortoCircuito : Minijuego
     private int cables = 3 ;
     public GameObject Cortocircuito;
     private bool cableFalsoAsignado = false;
+    public GameObject Player;
     public override void IniciarMinijuego()
     {
-            transform.position=ManageSalas.Instance.GetSalaActual().transform.position;
+            transform.position=Player.transform.position;
             if (!cableFalsoAsignado)
             {
                 CablesBuenos = new bool[cables]; // Asegúrate de inicializar el arreglo aquí.
@@ -69,5 +70,6 @@ public class CortoCircuito : Minijuego
         {
             Cables[i].SetActive(true);
         }
+        cableFalsoAsignado=false;
     }
 }
