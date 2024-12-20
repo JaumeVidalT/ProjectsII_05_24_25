@@ -20,7 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Project/Scene/MainMenu.unity
     guid: 18ebc17eecf1edc418b867ff242f903f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Resources/Project/Scene/MainScene 1.unity
     guid: eff7c8066c6400b4e869af89990cdd7c
+  - enabled: 1
+    path: Assets/Resources/Project/Scene/MainScene 2.unity
+    guid: 811632bbc48785c4285c2c695f778f39
   m_configObjects: {}
