@@ -38,6 +38,11 @@ public class ManageMinijuegos : MonoBehaviour
         DesactivarTodosLosMinijuegos();
     }
 
+    private void Update()
+    {
+        IniciarMinijuego(2);
+    }
+
     public void IniciarMinijuego(int index)
     {
         if (index >= 0 && index < minijuegos.Count)
@@ -78,7 +83,7 @@ public class ManageMinijuegos : MonoBehaviour
                 ManageMinijuegos.Instance.IniciarMinijuego(0);
                 break;
             case Evento.TypeOfProblem.SHORTCIRCUIT:
-                ManageMinijuegos.Instance.IniciarMinijuego(1);
+                ManageMinijuegos.Instance.IniciarMinijuego(3);
                 break;
             case Evento.TypeOfProblem.GASLEAK:
                 ManageMinijuegos.Instance.IniciarMinijuego(2);

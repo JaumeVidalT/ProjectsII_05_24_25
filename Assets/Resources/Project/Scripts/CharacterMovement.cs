@@ -8,11 +8,13 @@ public class CharacterMovement : MonoBehaviour
     public float drag;
     private Vector3 positionPlayer;
     private Rigidbody2D rb;  // Aseg�rate de que esta variable sea privada
+    private Animator animator;
 
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Usa la variable de la clase rb
+        animator = GetComponent<Animator>(); // Usa la variable de la clase animator
     }
 
     // Update is called once per frame
@@ -29,5 +31,10 @@ public class CharacterMovement : MonoBehaviour
 
         // Aplicar el drag al Rigidbody
         rb.drag = drag;
+
+        animator.SetFloat("Arriba", inputVertical);
+        animator.SetFloat("Abajo", inputVertical);
+        animator.SetFloat("Izquierda", inputHorizontal);
+        animator.SetFloat("Derecha", inputHorizontal);
     }
 }

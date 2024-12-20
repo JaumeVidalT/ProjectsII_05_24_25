@@ -29,16 +29,17 @@ public class KeySequence : Minijuego
 
     public override void IniciarMinijuego()
     {
-        Vector2 startPosition = ManageSalas.Instance.GetSalaActual().transform.position;
-        startPosition.x -= 5;
-        transform.position = ManageSalas.Instance.GetSalaActual().transform.position;
+        if(!flechasCargadas) { 
+        flechasCargadas = false;
+        currentInputIndex = 0;
+        sequenceIndex.Clear();
 
+        // Genera una nueva secuencia
+        sequenceLength = Random.Range(3, 12);
+        arrow = new GameObject[sequenceLength];
+        Vector2 startPosition = new Vector2(-5, 0);
 
-        if (!flechasCargadas)
-        {
-            arrow = new GameObject[sequenceLength];
-
-
+            // Crea las flechas
             for (int i = 0; i < sequenceLength; i++)
             {
                 int randArrow = Random.Range(0, 4);
@@ -56,11 +57,9 @@ public class KeySequence : Minijuego
                 Sprite newSprite = Resources.Load<Sprite>(spriteName);
                 if (newSprite != null)
                 {
-                    // Crear una flecha en la escena.
                     Vector2 spawnPosition = startPosition + new Vector2(i * spacing, 0);
                     arrow[i] = Instantiate(arrowPrefab.gameObject, spawnPosition, Quaternion.identity);
 
-                    // Asignar el sprite al SpriteRenderer del prefab.
                     SpriteRenderer spriteRenderer = arrow[i].GetComponent<SpriteRenderer>();
                     if (spriteRenderer != null)
                     {
@@ -73,8 +72,10 @@ public class KeySequence : Minijuego
                 }
             }
         }
+
         flechasCargadas = true;
     }
+
 
 
 
@@ -114,10 +115,21 @@ public class KeySequence : Minijuego
 
     public override void TerminarMinijuego()
     {
+        // Limpia todas las flechas de la escena
         flechasCargadas = false;
         for (int i = 0; i < sequenceLength; i++)
         {
-            Destroy(arrow[i]);
+            if (arrow[i] != null)
+            {
+                Destroy(arrow[i]);
+            }
         }
+
+        sequenceIndex.Clear();
+
+        currentInputIndex = 0;
+        sequenceLength = 0;
+        arrow = null; 
     }
+
 }
