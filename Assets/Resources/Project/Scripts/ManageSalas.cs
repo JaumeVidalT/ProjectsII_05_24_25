@@ -90,7 +90,7 @@ public class ManageSalas : MonoBehaviour
     {
         foreach (Salas sala in salasList)
         {
-            if (Random.Range(0, 100) > 30 && !sala.GetEventoEnSala()&&sala.GetypeOfSala()==Salas.typeOfSala.NONE)
+            if (Random.Range(0, 100) > 20 && !sala.GetEventoEnSala()&&sala.GetypeOfSala()==Salas.typeOfSala.NONE)
             {
                 Evento evento = sala.GetComponent<Evento>();
                 sala.UpdateSala();

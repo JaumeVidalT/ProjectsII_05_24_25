@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7624639521803117859}
   - component: {fileID: 7842510601024976759}
   - component: {fileID: -6972881072933405873}
-  m_Layer: 30
+  m_Layer: 0
   m_Name: Eventos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

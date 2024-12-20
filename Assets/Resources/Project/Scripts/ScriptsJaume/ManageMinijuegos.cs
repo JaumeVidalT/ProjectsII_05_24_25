@@ -37,10 +37,6 @@ public class ManageMinijuegos : MonoBehaviour
         DesactivarTodosLosMinijuegos();
     }
 
-    private void Update()
-    {
-        IniciarMinijuego(2);
-    }
 
     public void IniciarMinijuego(int index)
     {
