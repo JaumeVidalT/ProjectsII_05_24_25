@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 public class ManageSalas : MonoBehaviour
 {
@@ -10,9 +11,12 @@ public class ManageSalas : MonoBehaviour
     private List<Salas> salasList = new List<Salas>();
     private Salas salaActual;
     private Salas salaNext;
-    [SerializeField]
     private bool minijuegoActivo = false;
     private Salas nuevaSala = null;
+    private bool OnObject=false;
+    public Canvas canvas;
+
+
     private void Awake()
     {
         // Asegura que solo haya una instancia
@@ -32,7 +36,6 @@ public class ManageSalas : MonoBehaviour
             if (sala != null)
             {
                 salasList.Add(sala);
-                Debug.Log("Agregada sala: ");
             }
             else
             {
@@ -40,6 +43,7 @@ public class ManageSalas : MonoBehaviour
             }
         }
         salaActual = salasList[0];
+        SetSalasReset();
         CreateProblems();
     }
     // Update is called once per frame
@@ -47,30 +51,46 @@ public class ManageSalas : MonoBehaviour
     {
 
         
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)&&OnObject==true)
         {
            
             if (salaActual.GetEventoEnSala())
             {
-                GameObject.Find("white").GetComponent<CharacterMovement>().enabled=false;
+                canvas.gameObject.SetActive(false);
+                GameObject.Find("Player").GetComponent<CharacterMovement>().enabled=false;
                 ManageMinijuegos.Instance.StartMinijuego(salaActual);
                 minijuegoActivo = true;
             }
-
+            else if(salaActual.GetypeOfSala()!=Salas.typeOfSala.NONE)
+            {
+                GameObject.Find("Player").GetComponent<CharacterMovement>().enabled = false;
+                ManageMinijuegos.Instance.StartMinijuego(salaActual);
+                minijuegoActivo = true;
+            }
+            
+           
         }
 
         if (minijuegoActivo == true) 
         {
             ManageMinijuegos.Instance.StartMinijuego(salaActual);
         }
+        else
+        {
+            canvas.gameObject.SetActive(true);
+        }
         
 
+    }
+    public void setOnObject(bool _OnObject)
+    {
+        OnObject= _OnObject;
     }
     public void CreateProblems()
     {
         foreach (Salas sala in salasList)
         {
-            if (Random.Range(0, 100) > 30 && !sala.GetEventoEnSala())
+            if (Random.Range(0, 100) > 30 && !sala.GetEventoEnSala()&&sala.GetypeOfSala()==Salas.typeOfSala.NONE)
             {
                 Evento evento = sala.GetComponent<Evento>();
                 sala.UpdateSala();
@@ -125,6 +145,12 @@ public class ManageSalas : MonoBehaviour
         return contadorDeProblemas;
 
     }
-
-
+    private void SetSalasReset()
+    {
+        GameObject.Find("floorOxygen").GetComponent<Salas>().setTypeOfSala(1);
+        GameObject.Find("floorTemperature").GetComponent<Salas>().setTypeOfSala(2);
+        GameObject.Find("floorElectricity").GetComponent<Salas>().setTypeOfSala(3);
+    }
 }
+
+

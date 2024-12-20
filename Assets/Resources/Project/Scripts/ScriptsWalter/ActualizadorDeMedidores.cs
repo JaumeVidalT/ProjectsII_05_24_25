@@ -26,6 +26,7 @@ public class ActualizadorDeMedidores : MonoBehaviour
 
     public void Actualizar() 
     {
+       
         for(int i = 0; i < ManageSalas.Instance.ContarProblemasElectricidad(); i++)
         {
             barraTemperatura.fillAmount -= restarMedidores;

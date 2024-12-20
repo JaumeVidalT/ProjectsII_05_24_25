@@ -11,9 +11,9 @@ public class Evento : MonoBehaviour
         GASLEAK,
         NADA
     };
-    protected TypeOfProblem myTypeOfProblem=TypeOfProblem.NADA;
+    public TypeOfProblem myTypeOfProblem=TypeOfProblem.NADA;
     protected int dificulty;
-
+    
     public void ActualizarSala()  // Cambié el nombre del método
     {
         setTypeOfProblem(Random.Range(0, 3));
@@ -58,5 +58,14 @@ public class Evento : MonoBehaviour
     public void modifyDificulty(int amount)
     {
         dificulty = amount;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Ha entrado");
+        ManageSalas.Instance.setOnObject(true);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        ManageSalas.Instance.setOnObject(false);
     }
 }

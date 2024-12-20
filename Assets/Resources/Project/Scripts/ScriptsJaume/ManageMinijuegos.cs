@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class ManageMinijuegos : MonoBehaviour
 {
     public static ManageMinijuegos Instance { get; private set; }
@@ -22,7 +21,7 @@ public class ManageMinijuegos : MonoBehaviour
 
     private void Start()
     {
-        // Primero asegurémonos de que todos los objetos Minijuego estén activados para que sean encontrados.
+        // Primero asegurï¿½monos de que todos los objetos Minijuego estï¿½n activados para que sean encontrados.
         GameObject[] allMinijuegos = GameObject.FindGameObjectsWithTag("Minijuego");
 
         minijuegos = new List<Minijuego>();
@@ -58,14 +57,17 @@ public class ManageMinijuegos : MonoBehaviour
                 minijuegos[index].TerminarMinijuego();
                 ManageSalas.Instance.GetSalaActual().DestroyEvento();
                 ManageSalas.Instance.SetMinijuegoActivo(false);
-                GameObject.Find("white").GetComponent<CharacterMovement>().enabled = true;
+                GameObject.Find("Player").GetComponent<CharacterMovement>().enabled = true;
+                
             }
         }
         else
         {
-            Debug.LogWarning("Índice fuera de rango.");
+            Debug.LogWarning("ï¿½ndice fuera de rango.");
         }
     }
+  
+
     public void DesactivarTodosLosMinijuegos()
     {
         foreach (var minijuego in minijuegos)
@@ -76,18 +78,25 @@ public class ManageMinijuegos : MonoBehaviour
     }
     public void StartMinijuego(Salas salaActual)
     {
-        Debug.Log($"Tipo de problema detectado: {salaActual.eventoInstanciado.getTypeOfProblem()}");
-        switch (salaActual.eventoInstanciado.getTypeOfProblem())
+        if(salaActual.eventoInstanciado != null)
         {
-            case Evento.TypeOfProblem.FIRE:
-                ManageMinijuegos.Instance.IniciarMinijuego(0);
-                break;
-            case Evento.TypeOfProblem.SHORTCIRCUIT:
-                ManageMinijuegos.Instance.IniciarMinijuego(3);
-                break;
-            case Evento.TypeOfProblem.GASLEAK:
-                ManageMinijuegos.Instance.IniciarMinijuego(2);
-                break;
+            switch (salaActual.eventoInstanciado.getTypeOfProblem())
+            {
+                case Evento.TypeOfProblem.FIRE:
+                    ManageMinijuegos.Instance.IniciarMinijuego(0);
+                    break;
+                case Evento.TypeOfProblem.SHORTCIRCUIT:
+                    ManageMinijuegos.Instance.IniciarMinijuego(1);
+                    break;
+                case Evento.TypeOfProblem.GASLEAK:
+                    ManageMinijuegos.Instance.IniciarMinijuego(2);
+                    break;
+            }
+        }
+        
+        if(salaActual.GetterEventoSala().getTypeOfProblem()==Evento.TypeOfProblem.NADA&& salaActual.GetypeOfSala() != Salas.typeOfSala.NONE)
+        {
+            ManageMinijuegos.Instance.IniciarMinijuego(0);
         }
     }
 
