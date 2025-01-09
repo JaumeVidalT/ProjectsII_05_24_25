@@ -16,18 +16,7 @@ public class DestruirConClick : MonoBehaviour
     public EventSystem eventSystem;
     private bool Trigger = true;
     private bool Subir = false;
-    private void Start()
-    {
-        
-        if (raycaster == null)
-        {
-            raycaster = FindObjectOfType<GraphicRaycaster>();
-        }
-        if (eventSystem == null)
-        {
-            eventSystem = FindObjectOfType<EventSystem>();
-        }
-    }
+
     void Update()
     {
 
