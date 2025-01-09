@@ -32,9 +32,8 @@ public class CharacterMovement : MonoBehaviour
         // Aplicar el drag al Rigidbody
         rb.drag = drag;
 
-        animator.SetFloat("Arriba", inputVertical);
-        animator.SetFloat("Abajo", inputVertical);
-        animator.SetFloat("Izquierda", inputHorizontal);
-        animator.SetFloat("Derecha", inputHorizontal);
+        animator.SetFloat("Vertical", inputVertical);
+        
+        animator.SetFloat("Horizontal", inputHorizontal);
     }
 }
