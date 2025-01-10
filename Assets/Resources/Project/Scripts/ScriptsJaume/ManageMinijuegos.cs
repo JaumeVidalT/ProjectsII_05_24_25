@@ -90,7 +90,7 @@ public class ManageMinijuegos : MonoBehaviour
             }
         }
         
-        if(salaActual.GetterEventoSala().getTypeOfProblem()==Evento.TypeOfProblem.NADA&& salaActual.GetypeOfSala() != Salas.typeOfSala.NONE)
+        if(salaActual.GetterEventoSala().getTypeOfProblem() == Evento.TypeOfProblem.NADA&& salaActual.GetypeOfSala() != Salas.typeOfSala.NONE)
         {
             ManageMinijuegos.Instance.IniciarMinijuego(0);
         }
